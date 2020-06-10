@@ -1,0 +1,777 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header ni content-header-bg pad-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a asp-controller="Home" asp-action="Index">หน้าหลัก</a>
+            </li>
+            <li class="breadcrumb-item active">การจัดการผู้ใช้งาน</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <section class="content">
+                <div class="container-fluid">
+
+                  <form class="text-center mb-3">
+                      <div class="form-group row justify-content-center">
+                          <div class="col-12 col-lg-4">
+                              <div class="form-group row">
+                                  <label for="" class="col-md-3 col-lg-4 col-form-label">ชื่อ-สกุล</label>
+                                  <div class="col-md col-lg-8">
+                                      <input type="text" class="form-control" id="Name" name="Name" />
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-12 col-lg-4">
+                              <div class="form-group row">
+                                  <label for="" class="col-md-3 col-lg-4 col-form-label">สถานะ</label>
+                                  <div class="col-md col-lg-8 text-left">
+                                      <select class="form-control select2bs4" id="Status" name="Status">
+                                          <option value="0" disabled selected>ทั้งหมด</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-12 col-lg-3">
+                              <div class="row">
+                                  <div class="col">
+                                      <button type="sutmit" class="btn btn-success btn-block">
+                                          <i class="fas fa-search fa-xs"></i>
+                                          ค้นหา
+                                      </button>
+                                  </div>
+                                  <div class="col">
+                                      <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#addUserModal">
+                                          <i class="fas fa-plus fa-xs"></i>
+                                          สร้าง
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                  </form>
+                  <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                    <div class="spinnertable d-flex justify-content-center">
+                      <div class="spinnertable-grow text-primary" role="status">
+                        <span class="sr-only">Loading...</span>
+                      </div>
+                    </div>
+                    <div class="createDataTable"></div>
+                  </div>
+
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+
+
+  <!--Adduser ModaL-->
+  <form class="text-center" id="addInformationForm" method="POST">
+    <div class="modal fade bd-example-modal-xl" id="addUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">สร้างผู้ใช้งานระบบ</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-4">
+                      ชื่อผู้ใช้งาน <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-8">
+                      <input type="text" class="form-control" id="Username" name="Username">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-4">
+                      รหัสผ่าน <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-8">
+                      <input type="password" class="form-control" id="Password"name="Password">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <h2 class="text-left">User Information ( ประวัติส่วนตัว )</h2>
+              </div>
+              <div class="form-group col-12"></div>
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                      เลขประชาชน <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input type="number" class="form-control" id="addIDnumber" name="IDnumber">
+                  </div>
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                      โทรศัพท์มือถือ <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input type="tell" class="form-control" id="addMobile" name="Mobile">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                      ชื่อ <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control" id="addName"name="Name">
+                  </div>
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                      นามสกุล <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control" id="addLastname" name="Lastname">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                    <div class="col-sm-4">ภาษา</div>
+                    <div class="col-sm-8 text-left">
+                        <select class="form-control select2bs4" id="addLanguage" name="Language">
+                            <option value="" disabled selected>โปรดเลือก</option>
+                            <option value="th">ไทย</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">สิทธิ์ผู้ใช้งาน<label class="text-danger">*</label></div>
+                    <div class="col-sm-8 text-left">
+                        <select class="form-control select2bs4" id="addPermission" name="Permission">
+                            <option value="" disabled selected>โปรดเลือก</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-4">สถานะพักงาน </div>
+                  <div class="col-sm-8">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Status" id="addStatus" checked>
+                      เปิดใช้งาน
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Status" id="addStatus">
+                      ถูกระงับ
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-5">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              รายละเอียด
+                          </div>
+
+                          <div class="col-sm-8">
+                              <textarea class="form-control" id="addDesc" name="Desc" rows="3"></textarea>
+                          </div>
+                      </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer justify-content-center">
+              <button type="submit" class="btn btn-success" id="addInfo">บันทึก</button>
+              <button type="button" class="btn btn-danger" id="cancelInfo">ยกเลิก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!--Edituser ModaL-->
+  <form class="text-center" id="editInformationForm" method="POST">
+    <div class="modal fade bd-example-modal-xl" id="editUserModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title">แก้ไขผู้ใช้งานระบบ</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <div class="modal-body">
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-4">
+                      ชื่อผู้ใช้งาน <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-8">
+                      <input type="text" class="form-control" id="editUsername" name="Username">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-4">
+                      รหัสผ่าน <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-8">
+                      <input type="password" class="form-control" id="editPassword"name="Password">
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-12">
+                <h2 class="text-left">User Information ( ประวัติส่วนตัว )</h2>
+              </div>
+              <div class="form-group col-12"></div>
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                      เลขประชาชน <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input type="number" class="form-control" id="editIDnumber" name="IDnumber">
+                  </div>
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                      โทรศัพท์มือถือ <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input type="tell" class="form-control" id="editMobile" name="Mobile">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                      ชื่อ <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control" id="editName"name="Name">
+                  </div>
+                </div>
+              </div>
+              <div class="col-5">
+                <div class="form-group row">
+                  <div class="col-sm-4">
+                      นามสกุล <label class="text-danger">*</label>
+                  </div>
+                  <div class="col-sm-8">
+                      <input type="text" class="form-control" id="editLastname" name="Lastname">
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-1"></div>
+              <div class="col-5">
+                <div class="form-group row">
+                    <div class="col-sm-4">ภาษา</div>
+                    <div class="col-sm-8 text-left">
+                        <select class="form-control select2bs4" id="editLanguage" name="Language">
+                            <option value="" disabled selected>โปรดเลือก</option>
+                            <option value="th">ไทย</option>
+                            <option value="en">English</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <div class="col-sm-4">สิทธิ์ผู้ใช้งาน<label class="text-danger">*</label></div>
+                    <div class="col-sm-8 text-left">
+                        <select class="form-control select2bs4" id="editPermission" name="Permission">
+                            <option value="" disabled selected>โปรดเลือก</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group row">
+                  <div class="col-sm-4">สถานะพักงาน </div>
+                  <div class="col-sm-8">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Status" id="editStatusOn" checked>
+                      เปิดใช้งาน
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input" type="radio" name="Status" id="editStatusOff">
+                      ถูกระงับ
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-5">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              รายละเอียด
+                          </div>
+
+                          <div class="col-sm-8">
+                              <textarea class="form-control" id="editDesc" name="Desc" rows="3"></textarea>
+                          </div>
+                      </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="modal-footer justify-content-center">
+              <button type="submit" class="btn btn-success" id="editInfo">บันทึก</button>
+              <button type="button" class="btn btn-danger" id="cancelEdit">ยกเลิก</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+<!-- /.content-wrapper -->
+
+
+
+
+
+@section Scripts {
+  <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+  <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+  <script>
+    document.openMenu("User");
+    document.activeMenu("Manage");
+
+  $(document).ready(function () {
+    function requests(url, type, callbackfn = ()=>{return;}) {
+      $.ajax({
+        url: url,
+        type : type,
+        dataType : 'JSON',
+        success : function(result) {
+          callbackfn(result);
+        },
+        error: function(xhr, resp, text) {
+          return;
+        }
+      })
+    }
+
+    requests("/User/GetUserinfo", "GET", loadTable);
+
+    jQuery.validator.addMethod("validID",function (value){  //สร้างฟังก์ชันมาสำหรับ valid id card  ของ jQuery.validator.addMethod(
+        if (value == '' || value == undefined) {
+            return false;
+        }
+        var arrayID = [];
+        for (var i = 0; i < 12; i++) {
+            arrayID.push(value.substring(i, i + 1) * (13 - i));
+        }
+        var digit = 11 - (arrayID.reduce(function (t, n) {
+            return t + n;
+        }) % 11);
+
+        digit = digit.toString().substring(digit.toString().length - 1);
+        return (value.substring(12) == digit) ? true : false;
+    });
+
+    var regxTh = /^[ก-์]+$/;
+    var regxUsername = /^[a-zA-Z0-9-_]+$/;
+    $("#addInfo").click(function() {
+      $.validator.setDefaults({
+        submitHandler: function () {
+          var addData = $("#addInformationForm").serializeArray();
+          $.ajax({
+              url: '/User/ReciveAdd', // url where to submit the request
+              type : "POST", // type of action POST || GET
+              dataType : 'JSON', // data type
+              //contentType: "application/json",
+              data : addData, // post data || get data
+              success : function(result) {
+                  console.log(result);
+                  Swal.fire({
+                  icon: 'success',
+                  title: 'สำเร็จ',
+                  text: 'บันทึกข้อมูลสำเร็จ',
+                  confirmButtonText: 'ยืนยัน'
+                  })
+
+                  document.getElementById("addInformationForm").reset();
+              },
+              error: function(xhr, resp, text) {
+                  Swal.fire({
+                  icon: 'error',
+                  title: 'ผิดพลาด',
+                  text: 'บันทึกข้อมูลไม่สำเร็จ',
+                  confirmButtonText: 'ยืนยัน'
+                  })
+                  console.log(xhr, resp, text);
+              }
+          })
+        }
+      });
+      $('#addInformationForm').validate({
+          rules: {
+              Username: {
+                  required: true,
+                  pattern: regxUsername,
+                  minlength: 8,
+                  maxlength: 10
+                  
+              },
+              Password: {
+                  required: true,
+                  minlength: 8
+              },
+              IDnumber: {
+                  required: true,
+                  minlength: 13,
+                  maxlength: 13,
+                  validID: true
+                  
+              },
+              Name:{
+                  required: true,
+                  minlength: 3,
+                  maxlength: 20,
+                  pattern: regxTh
+              },
+              Lastname:{
+                  required: true,
+                  minlength: 3,
+                  maxlength: 20,
+                  pattern: regxTh
+              },
+              Mobile: {
+                  required: true
+              },
+              Permission: {
+                  required: true
+              }
+          },
+          messages: {
+              Username: {
+                  required: "กรุณากรอกข้อมูล",
+                  pattern: "ห้ามใช้อักษรพิเศษ",
+                  minlength: "กรุณากรอกข้อมูลให้มากกว่า 8 ตัวอักษร",
+                  maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 10 ตัวอักษร"
+              },
+              Password: {
+                  required: "กรุณากรอกข้อมูล",
+                  minlength: "กรุณากรอกข้อมูลให้มากกว่า 8 ตัวอักษร"
+              },
+              IDnumber: {
+                  required: "กรุณากรอกข้อมูล",
+                  minlength: "กรุณากรอกข้อมูลให้ถูกต้อง",
+                  maxlength: "กรุณากรอกข้อมูลให้ถูกต้อง",
+                  validID: "เลขบัตรประชาชนไม่ถูกต้อง"
+              },
+              Name:{
+                  required: "กรุณากรอกข้อมูล",
+                  minlength: "กรุณากรอกข้อมูลให้มากกว่า 3 ตัวอักษร",
+                  maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 20 ตัวอักษร",
+                  pattern: "กรุณากรอกข้อมูลเป็นภาษาไทย"
+              },
+              Lastname:{
+                  required: "กรุณากรอกข้อมูล",
+                  minlength: "กรุณากรอกข้อมูลให้มากกว่า 3 ตัวอักษร",
+                  maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 20 ตัวอักษร",
+                  pattern: "กรุณากรอกข้อมูลเป็นภาษาไทย"
+              },
+              Mobile: {
+                  required: "กรุณากรอกข้อมูล"
+              },
+              Permission: {
+                  required: "กรุณาเลือกข้อมูล"
+              }
+          },
+          errorElement: 'span',
+          errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+          },
+          highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+          },
+          unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+          }
+      });
+      $("#cancelInfo").click(function() { //clear validate
+          var validImportForm = $( "#addInformationForm" ).validate();
+          validImportForm.resetForm();
+          document.getElementById("addInformationForm").reset();
+      });
+    });
+    
+    $("#editInfo").click(function() {
+      $.validator.setDefaults({
+        submitHandler: function () {
+          var addData = $("#editInformationForm").serializeArray();
+          $.ajax({
+              url: '/User/ReciveEdit', // url where to submit the request
+              type : "POST", // type of action POST || GET
+              dataType : 'JSON', // data type
+              //contentType: "application/json",
+              data : addData, // post data || get data
+              success : function(result) {
+                  console.log(result);
+                  Swal.fire({
+                  icon: 'success',
+                  title: 'สำเร็จ',
+                  text: 'บันทึกข้อมูลสำเร็จ',
+                  confirmButtonText: 'ยืนยัน'
+                  })
+
+                  document.getElementById("editInformationForm").reset();
+              },
+              error: function(xhr, resp, text) {
+                  Swal.fire({
+                  icon: 'error',
+                  title: 'ผิดพลาด',
+                  text: 'บันทึกข้อมูลไม่สำเร็จ',
+                  confirmButtonText: 'ยืนยัน'
+                  })
+                  console.log(xhr, resp, text);
+              }
+          })
+        }
+      });
+      $('#editInformationForm').validate({
+          rules: {
+              Username: {
+                  required: true,
+                  pattern: regxUsername,
+                  minlength: 8,
+                  maxlength: 10
+                  
+              },
+              Password: {
+                  required: true,
+                  minlength: 8
+              },
+              IDnumber: {
+                  required: true,
+                  minlength: 13,
+                  maxlength: 13,
+                  validID: true
+                  
+              },
+              Name:{
+                  required: true,
+                  minlength: 3,
+                  maxlength: 20,
+                  pattern: regxTh
+              },
+              Lastname:{
+                  required: true,
+                  minlength: 3,
+                  maxlength: 20,
+                  pattern: regxTh
+              },
+              Mobile: {
+                  required: true
+              },
+              Permission: {
+                  required: true
+              }
+          },
+          messages: {
+              Username: {
+                  required: "กรุณากรอกข้อมูล",
+                  pattern: "ห้ามใช้อักษรพิเศษ",
+                  minlength: "กรุณากรอกข้อมูลให้มากกว่า 8 ตัวอักษร",
+                  maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 10 ตัวอักษร"
+              },
+              Password: {
+                  required: "กรุณากรอกข้อมูล",
+                  minlength: "กรุณากรอกข้อมูลให้มากกว่า 8 ตัวอักษร"
+              },
+              IDnumber: {
+                  required: "กรุณากรอกข้อมูล",
+                  minlength: "กรุณากรอกข้อมูลให้ถูกต้อง",
+                  maxlength: "กรุณากรอกข้อมูลให้ถูกต้อง",
+                  validID: "เลขบัตรประชาชนไม่ถูกต้อง"
+              },
+              Name:{
+                  required: "กรุณากรอกข้อมูล",
+                  minlength: "กรุณากรอกข้อมูลให้มากกว่า 3 ตัวอักษร",
+                  maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 20 ตัวอักษร",
+                  pattern: "กรุณากรอกข้อมูลเป็นภาษาไทย"
+              },
+              Lastname:{
+                  required: "กรุณากรอกข้อมูล",
+                  minlength: "กรุณากรอกข้อมูลให้มากกว่า 3 ตัวอักษร",
+                  maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 20 ตัวอักษร",
+                  pattern: "กรุณากรอกข้อมูลเป็นภาษาไทย"
+              },
+              Mobile: {
+                  required: "กรุณากรอกข้อมูล"
+              },
+              Permission: {
+                  required: "กรุณาเลือกข้อมูล"
+              }
+          },
+          errorElement: 'span',
+          errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.form-group').append(error);
+          },
+          highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+          },
+          unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+          }
+      });
+      $("#cancelEdit").click(function() { //clear validate
+          var validImportForm = $( "#editInformationForm" ).validate();
+          validImportForm.resetForm();
+          document.getElementById("editInformationForm").reset();
+      });
+    });
+
+    function loadTable(data) {
+      $('.spinnertable').show();
+      $('.createDataTable').empty(); 
+      var htmlStr = '<table id="createDataTable" class="table table-striped table-bordered table-hover" style="width:100%">'
+          +'<thead>'
+              +'<tr>'
+                  +'<th>No.</th>'
+                  +'<th>ชื่อ-สกุล</th>'
+                  +'<th>รายละเอียด</th>'
+                  +'<th>สถานะ</th>'
+                  +'<th></th>'
+              +'</tr>'
+          +'</thead>'
+      +'<tbody>';
+      for( var i = 0; i < data.length; i++ ) {
+          htmlStr += '<tr>'
+              +'<td>'+parseInt(i+1)+'</td>'
+              +'<td>'+data[i]["fullname"]+'</td>'
+              +'<td>'+data[i]["note"]+'</td>'
+              +'<td>'+(data[i]["visible"] == 0 ? 'ใช้งานไม่ได้' : 'ใช้งานได้')+'</td>'
+              +'<td class="d-flex justify-content-lg-center">'
+                  +'<a href="javascript:void(0)"><i class="fas fa-edit mr-3" data-toggle="modal" data-target="#editUserModal" data-id="'+ data[i]['refid'] +'"></i></a>'
+                  +'<a href="javascript:void(0)"><i class="fas fa-trash" style="color:red" onclick="deleteRow(\''+ data[i]['refid'] +'\')"></i></a>'
+              +'</td>'
+          +'</tr>';
+      }
+      htmlStr += '</tbody>'
+      +'</table>';  
+      $('.createDataTable').html(`<div class="table-responsive">${htmlStr}</div>`);
+      $("#createDataTable").DataTable({
+        dom: `<'row'<'col-sm-12'l>>
+            <'row'<'col-sm-12'tr>>
+            <'row'<'col-sm-6'i><'col-sm-6'p>>`,
+        drawCallback: function (settings) {
+            $('.spinnertable').hide();
+        }
+      });
+
+    };
+
+    $('#editUserModal').on('show.bs.modal', function (event) {
+          var button = $(event.relatedTarget);
+          if(button.data('id')){document.dtid = button.data('id')}
+    });
+
+    document.__proto__.deleteRow = function() {
+      Swal.fire({
+        title: 'ต้องการลบข้อมูล ?',
+        text: "กดยืนยันเพื่อลบข้อมูล",
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'ยกเลิก',
+        confirmButtonText: 'ยืนยัน'
+      }).then((result) => {
+        if (result.value) {
+            Swal.fire({
+            icon: 'success',
+            title: 'สำเร็จ',
+            text: 'ลบข้อมูลแล้ว',
+            confirmButtonText: 'ยืนยัน'
+            })
+        }
+      });
+    };
+
+  });
+             
+  </script>
+}

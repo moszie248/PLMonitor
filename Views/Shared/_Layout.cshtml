@@ -1,0 +1,451 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>@ViewData["Title"] - Pallet</title>
+
+    <!-- favicon -->
+    @* <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon"> *@
+
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="~/template/adminlte/plugins/fontawesome-free/css/all.min.css">
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet"
+        href="~/template/adminlte/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+    <!-- SweetAlert2 -->
+    <link rel="stylesheet"
+        href="~/template/adminlte/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css">
+    <!-- DataTables -->
+    <link rel="stylesheet" href="~/template/adminlte/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="~/template/adminlte/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="~/template/adminlte/plugins/select2/css/select2.min.css">
+    <link rel="stylesheet"
+        href="~/template/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
+    <!-- icheck bootstrap -->
+    <link rel="stylesheet" href="~/template/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+    <!-- Theme style -->
+    <link rel="stylesheet" href="~/template/adminlte/dist/css/adminlte.min.css">
+    <!-- App style -->
+    <link rel="stylesheet" href="~/css/app.css">
+    <!-- Style -->
+    @RenderSection("Style", required: false)
+
+
+
+</head>
+<body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed">
+    <div class="wrapper">
+        <nav class="main-header navbar navbar-expand navbar-white navbar-light">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#"><i class="fas fa-bars"></i></a>
+                </li>
+                <li class="nav-item d-none d-sm-inline-block">
+                    <h3 id="navbarTitle" class="m-0 text-dark"></h3>
+                </li>
+                <!-- <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Home</a>
+                </li> -->
+                <!-- <li class="nav-item d-none d-sm-inline-block">
+                    <a href="#" class="nav-link">Contact</a>
+                </li> -->
+            </ul>
+
+            <!-- SEARCH FORM -->
+            <!-- <form class="form-inline ml-3">
+                <div class="input-group input-group-sm">
+                    <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-navbar" type="submit">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                </div>
+            </form> -->
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <!-- Messages Dropdown Menu Delete-->
+                <!-- Notifications Dropdown Menu -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link" data-toggle="dropdown" href="#">
+                        <i class="far fa-bell"></i>
+                        <span class="badge badge-warning navbar-badge">2</span>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+                        <span class="dropdown-header">2 Notifications</span>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-envelope mr-2"></i> 1 new messages
+                            <span class="float-right text-muted text-sm">3 mins</span>
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-users mr-2"></i> 1 friend requests
+                            <span class="float-right text-muted text-sm">12 hours</span>
+                        </a>
+                        <!-- <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item">
+                            <i class="fas fa-file mr-2"></i> 3 new reports
+                            <span class="float-right text-muted text-sm">2 days</span>
+                        </a> -->
+                        <div class="dropdown-divider"></div>
+                        <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+                    </div>
+                </li>
+                <!-- Sidebar user panel (optional) -->
+                <div class="user-panel d-flex">
+                    <div class="image">
+                        <img src="~/template/adminlte/dist/img/user2-160x160.jpg"
+                            class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a asp-controller="User" asp-action="ViewInformation" class="d-block" id="username"></a>
+                    </div>
+                </div>
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#"><i
+                            class="fas fa-th-large"></i></a>
+                </li>
+            </ul>
+        </nav>
+        <!-- /.navbar -->
+
+        <aside class="main-sidebar sidebar-dark-primary elevation-4">
+            <!-- Brand Logo -->
+            <a asp-controller="Home" asp-action="Index" class="brand-link">
+                <img src="~/template/adminlte/dist/img/AdminLTELogo.png" alt="AdminLTE Logo"
+                    class="brand-image img-circle elevation-3" style="opacity: .8">
+                <span class="brand-text font-weight-light">PALLET</span>
+            </a>
+
+            <!-- Sidebar -->
+            <div class="sidebar">
+                <!-- Sidebar user panel (optional) -->
+                <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+                    <div class="image">
+                        <img src="{% static 'tools/templates/adminlte/dist/img/user2-160x160.jpg' %}"
+                            class="img-circle elevation-2" alt="User Image">
+                    </div>
+                    <div class="info">
+                        <a href="#" class="d-block">Alexander Pierce</a>
+                    </div>
+                </div> -->
+
+                <!-- Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- Add icons to the links using the .nav-icon class
+                            with font-awesome or any other icon font library -->
+                        <li class="nav-item">
+                            <a asp-area="" asp-controller="Home" asp-action="Index" class="nav-link" id="Home">
+                                <i class="nav-icon fas fa-home"></i>
+                                <p class="menu1home">
+                                @* หน้าหลัก *@
+                                </p>
+                            </a>
+                        </li>
+
+                        <li class="nav-item" id="Management">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-pallet"></i>
+                            <p class="menu2management">
+                                @* การจัดการพาเลท *@
+                            </p>
+                            <i class="right fas fa-angle-left"></i>
+                            @* <i class="fas fa-angle-down right"></i> *@
+                            </a>
+                            <ul class="nav nav-treeview ml-3">
+                                <li class="nav-item">
+                                    <a asp-controller="Management" asp-action="ManageRFID"  class="nav-link" id="ManageRFID">
+                                    <i class="fas fa-circle fa-xs"></i>
+                                    <p class="menu2sub1rfid">
+                                        @* RFID *@
+                                    </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Management" asp-action="ManagePallet" class="nav-link" id="ManagePallet">
+                                    <i class="fas fa-circle fa-xs"></i>
+                                    <p class="menu2sub2pallet">
+                                        @* พาเลท *@
+                                    </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a asp-controller="Management" asp-action="ManagePurchase"  class="nav-link" id="ManagePurchase">
+                                    <i class="fas fa-circle fa-xs"></i>
+                                    <p class="menu2sub3po">
+                                        @* ใบสั่งซื้อ *@
+                                    </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="nav-item" id="Move">
+                            <a class="nav-link" href="#">
+                            <i class="nav-icon fas fa-arrows-alt"></i>
+                            <p class="menu3move">
+                                @* การเคลื่อนย้ายพาเลท *@
+                            </p>
+                            <i class="right fas fa-angle-left"></i>
+                            @* <i class="fas fa-angle-down right"></i> *@
+                            </a>
+                            <ul class="nav nav-treeview ml-3">
+                            <li class="nav-item">
+                                <a asp-controller="Move" asp-action="MovePalletRFID" class="nav-link" id="MovePalletRFID">
+                                <i class="fas fa-circle fa-xs"></i>
+                                <p class="menu3sub1palletorrfid">
+                                    @* การเคลื่อนย้าย Pallet&RFID *@
+                                </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Move" asp-action="History" class="nav-link" id="History">
+                                <i class="fas fa-circle fa-xs"></i>
+                                <p class="menu3sub2history">
+                                    @* ประวัติ *@
+                                </p>
+                                </a>
+                            </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview" id="User">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-user"></i>
+                            <p class="menu4user">
+                                @* การจัดการผู้ใช้งาน *@
+                            </p>
+                            <i class="right fas fa-angle-left"></i>
+                            @* <i class="right fas fa-angle-down"></i> *@
+                            </a>
+                            <ul class="nav nav-treeview ml-3">
+                                <li class="nav-item">
+                                    <a  asp-controller="User" asp-action="Manage" class="nav-link" id="Manage">
+                                    <i class="fas fa-circle fa-xs"></i>
+                                    <p class="menu4sub1user">
+                                        @* ผู้ใช้งาน *@
+                                    </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a  asp-controller="User" asp-action="Permision" class="nav-link" id="Permision">
+                                    <i class="fas fa-circle fa-xs"></i>
+                                    <p class="menu4sub2userrights">
+                                        @* สิทธิ์การใช้งาน *@
+                                    </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview" id="Report">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-file-invoice"></i>
+                            <p class="menu5report">
+                                @* รายงาน *@
+                            </p>
+                            <i class="right fas fa-angle-left"></i>
+                            @* <i class="right fas fa-angle-down"></i> *@
+                            </a>
+                            <ul class="nav nav-treeview ml-3">
+                            <li class="nav-item">
+                                <a asp-controller="Report" asp-action="Summary" class="nav-link" id="Summary">
+                                <i class="fas fa-circle fa-xs"></i>
+                                <p class="menu5sub1summary">
+                                    @* สรุปผลรวม *@
+                                </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Report" asp-action="Late" class="nav-link" id="Late">
+                                <i class="fas fa-circle fa-xs"></i>
+                                <p class="menu5sub2outin">
+                                    @* ส่งออก-นำเข้า *@
+                                </p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Report" asp-action="Status" class="nav-link" id="Status">
+                                <i class="fas fa-circle fa-xs"></i>
+                                <p class="menu5sub3status">
+                                    @* สถานะ *@
+                                </p>
+                                </a>
+                            </li>
+                            </ul>
+                        </li>
+
+                        <li class="nav-item has-treeview" id="SettingManage">
+                            <a href="#" class="nav-link">
+                            <i class="nav-icon fas fa-cog"></i>
+                            <p class="menu6setting">
+                                @* ตั้งค่า *@
+                            </p>
+                            <i class="right fas fa-angle-left"></i>
+                            @* <i class="fas fa-angle-down right"></i> *@
+                            </a>
+
+                            <ul class="nav nav-treeview ml-3">
+                                <li class="nav-item has-treeview" id="SettingManageDataCus">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-circle fa-xs"></i>
+                                        <p class="menu6sub1cusinfo">
+                                            @* ข้อมูลลูกค้า *@
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
+                                        @* <i class="fas fa-angle-down right"></i> *@
+                                    </a>
+                                    <ul class="nav nav-treeview ml-3">
+                                        <li class="nav-item">
+                                            <a asp-controller="SettingManage" asp-action="Company" class="nav-link" id="Company">
+                                            <i class="fas fa-circle fa-xs"></i>
+                                            <p class="menu6sub1sub1company">
+                                                @* บริษัท *@
+                                            </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-controller="SettingManage" asp-action="Branch" class="nav-link" id="Branch">
+                                            <i class="fas fa-circle fa-xs"></i>
+                                            <p class="menu6sub1sub2warehouse">
+                                                @* สาขาหรือโกดัง *@
+                                            </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            @* <li class="nav-item">
+                                <a asp-controller="SettingManage" asp-action="Company" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ข้อมูลบริษัท</p>
+                                </a>
+                            </li>  
+                            <li class="nav-item">
+                                <a asp-controller="SettingManage" asp-action="Branch" class="nav-link">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>ข้อมูล สาขา/โกดัง</p>
+                                </a>
+                            </li> *@
+
+                                <li class="nav-item has-treeview" id="SettingManageDataSys">
+                                    <a href="#" class="nav-link">
+                                        <i class="fas fa-circle fa-xs"></i>
+                                        <p class="menu6sub2systeminfo">
+                                            @* ข้อมูลระบบ *@
+                                        </p>
+                                        <i class="right fas fa-angle-left"></i>
+                                        @* <i class="fas fa-angle-down right"></i> *@
+                                    </a>
+                                    <ul class="nav nav-treeview ml-3">
+                                        <li class="nav-item">
+                                            <a asp-controller="SettingManage" asp-action="Damage" class="nav-link" id="Damage">
+                                            <i class="fas fa-circle fa-xs"></i>
+                                            <p class="menu6sub2sub1damage">
+                                                @* เปอร์เซ็นความเสียหาย *@
+                                            </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-controller="SettingManage" asp-action="Equipment" class="nav-link" id="Equipment">
+                                            <i class="fas fa-circle fa-xs"></i>
+                                            <p class="menu6sub2sub2equipmentlist">
+                                                @* รายการอุปกรณ์ *@
+                                            </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-controller="SettingManage" asp-action="StatusRFID" class="nav-link" id="StatusRFID">
+                                            <i class="fas fa-circle fa-xs"></i>
+                                            <p class="menu6sub2sub3statusrfid">
+                                                @* สถานะ RFID *@
+                                            </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a asp-controller="SettingManage" asp-action="StatusPallet" class="nav-link" id="StatusPallet">
+                                            <i class="fas fa-circle fa-xs"></i>
+                                            <p class="menu6sub2sub4statuspallet">
+                                                @* สถานะพาเลท *@
+                                            </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>    
+                            </ul>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-controller="Login" asp-action="Logout" class="nav-link">
+                                <i class="nav-icon fas fa-sign-out-alt"></i>
+                                <p class="menu7logout">
+                                    @* ออกจากระบบ *@
+                                </p>
+                            </a>
+                        </li>
+                    
+                    </ul>
+                </nav>
+                <!-- /.sidebar-menu -->
+
+            </div>
+            <!-- /.sidebar -->
+        </aside>
+
+        @RenderBody()
+
+        <aside class="control-sidebar control-sidebar-dark">
+            <!-- Control sidebar content goes here -->
+            <div class="p-3">
+                <h5>Title</h5>
+                <p>Sidebar content</p>
+            </div>
+        </aside>
+        <!-- /.control-sidebar -->
+
+        <footer class="main-footer">
+            <!-- To the right -->
+            <div class="float-right d-none d-sm-inline">
+                Pallet Management System
+            </div>
+            <!-- Default to the left -->
+            <strong>Copyright &copy; 2020 <a href="#">PPONTIME</a>.</strong> All rights reserved.
+        </footer>
+    </div>
+
+    <!--JQUERY VALIDATE-->
+    @* <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script> *@
+    <!-- jQuery -->
+    <script src="~/template/adminlte/plugins/jquery/jquery.min.js"></script>
+    <!-- Bootstrap 4 -->
+    <script src="~/template/adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!-- DataTables -->
+    <script src="~/template/adminlte/plugins/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/template/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/template/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/template/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+    <!-- overlayScrollbars -->
+    <script
+        src="~/template/adminlte/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+    <!-- SweetAlert2 -->
+    <script src="~/template/adminlte/plugins/sweetalert2/sweetalert2.min.js"></script>
+    <!-- Select2 -->
+    <script src="~/template/adminlte/plugins/select2/js/select2.full.min.js"></script>
+    <!-- Language -->
+    <script src="~/language/translate.js"></script>
+    <!-- App -->
+    <script src="~/js/app.js"></script>
+    <!-- AdminLTE App -->
+    <script src="~/template/adminlte/dist/js/adminlte.min.js"></script>
+    <!-- Page -->
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>

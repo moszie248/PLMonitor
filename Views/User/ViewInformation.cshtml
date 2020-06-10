@@ -1,0 +1,698 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header ni content-header-bg pad-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <!-- <div class="col-sm-6">
+                      <h1 class="m-0 text-dark"></h1>
+                  </div> --><!-- /.col -->
+        <div class="col-sm-12">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a asp-controller="Home" asp-action="Index">หน้าหลัก</a>
+            </li>
+            <li class="breadcrumb-item active">ผู้ใช้งานระบบ</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <section class="content">
+                <div class="container-fluid">
+                  <form class="informationForm" id="informationForm">
+                    <div class="row">
+                      <div class="col-md-12">
+                        <div class="card card-success">
+                          <div class="card-header">
+                            <h3 class="card-title">ข้อมูลส่วนตัว</h3>
+                          </div>
+
+                          <div class="card-body">
+                            <div class="row">
+                              <div class="col">
+                                <div class="row">
+                                  <div class="col">
+                                    <div
+                                      class="form-group row justify-content-md-center"
+                                    >
+                                      <div class="col-sm-7">
+                                        <img
+                                          src="~/img/admin.jpg"
+                                          class="img-circle"
+                                          alt="Responsive image"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group row text-center">
+                                      <div class="col-sm-4">เปลี่ยนรูปภาพ</div>
+                                      <div class="col-sm-6">
+                                        <input
+                                          type="file"
+                                          class="form-control-file"
+                                          id="imageUp"
+                                          name="imageUp"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col text-center">
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group row">
+                                      <div class="col-sm-4">
+                                        ชื่อผู้ใช้งาน
+                                        <label class="text-danger">*</label>
+                                      </div>
+                                      <div class="col-sm-7">
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          id="username"
+                                          name="username"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group row">
+                                      <div class="col-sm-4">
+                                        รหัสผ่าน
+                                        <label class="text-danger">*</label>
+                                      </div>
+                                      <div class="col-sm-7">
+                                        <input
+                                          type="password"
+                                          class="form-control"
+                                          id="password"
+                                          name="password"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group row">
+                                      <div class="col-sm-4">อีเมล</div>
+                                      <div class="col-sm-7">
+                                        <input
+                                          type="text"
+                                          class="form-control"
+                                          id="email"
+                                          name="email"
+                                        />
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col">
+                                    <div class="form-group row">
+                                      <div class="col-sm-4">ภาษา</div>
+                                      <div class="col-sm-7">
+                                        <select class="custom-select" id="language">
+                                          <option value="" disabled selected>โปรดเลือก</option>
+                                          <option value="th">ไทย</option>
+                                          <option value="en">English</option>
+                                        </select>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                              <div class="col">
+                                <div class="col">
+                                  <button type="submit" class="btn btn-primary">
+                                    บันทึก
+                                  </button>
+                                  <button
+                                    type="reset"
+                                    class="btn btn-danger"
+                                    id="infoCancel"
+                                  >
+                                    ยกเลิก
+                                  </button>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <!-- SELECT2 EXAMPLE -->
+                    <div class="card card-default">
+                      <div class="card-header">
+                        <div class="d-flex justify-content-center">
+                          <h3 class="card-title">ขั้นสูง</h3>
+                          <div class="card-tools">
+                            <button
+                              type="button"
+                              class="btn btn-tool"
+                              data-card-widget="collapse"
+                            >
+                              <i class="fas fa-minus"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.card-header -->
+                      <div class="card-body">
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>ประวัติส่วนตัว</h3>
+                          </div>
+                        </div>
+                        <div class="row"><br /></div>
+                        <div class="row text-center">
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">รหัสพนักงาน</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="empID"
+                                  disabled
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6"></div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">
+                                เลขประชาชน <label class="text-danger">*</label>
+                              </div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="number"
+                                  class="form-control"
+                                  id="IDnumber"
+                                  name="IDnumber"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6"></div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">คำนำหน้า</div>
+                              <div class="col-sm-7">
+                                <select class="custom-select" id="nameTitle">
+                                  <option value="" disabled selected>โปรดเลือก</option>
+                                  <option value="Mr">นาย</option>
+                                  <option value="Mrs">นาง</option>
+                                  <option value="Miss">นางสาว</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6"></div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">
+                                ชื่อ(ภาษาไทย)
+                                <label class="text-danger">*</label>
+                              </div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="nameTH"
+                                  name="nameTH"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">
+                                นามสกุล(ภาษาไทย)
+                                <label class="text-danger">*</label>
+                              </div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="lastnameTH"
+                                  name="lastnameTH"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">
+                                ชื่อ(ภาษาอังกฤษ)
+                                <label class="text-danger">*</label>
+                              </div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="nameEN"
+                                  name="nameEN"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">
+                                นามสกุล(ภาษาอังกฤษ)
+                                <label class="text-danger">*</label>
+                              </div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="lastnameEN"
+                                  name="lastnameEN"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">เพศ</div>
+                              <div class="col-sm-7">
+                                <select class="custom-select" id="nameTitle">
+                                  <option value="" disabled selected>โปรดเลือก</option>
+                                  <option value="male">ชาย</option>
+                                  <option value="female">หญิง</option>
+                                </select>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">วันเกิด</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="birthDate"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">ที่อยู่</div>
+                              <div class="col-sm-7">
+                                <textarea
+                                  class="form-control"
+                                  id="Address"
+                                  rows="2"
+                                ></textarea>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6"></div>
+                          <div class="col-6 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">จังหวัด</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="Province"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">อำเภอ/เขต</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="District"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">ตำบล/แขวง</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="subDistrict"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">รหัสไปรษณีย์</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="zipCode"
+                                  name="zipCode"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">โทรศัพท์(บ้าน)</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="tell"
+                                  class="form-control"
+                                  id="telephone"
+                                  name="telephone"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-6 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">
+                                โทรศัพท์มือถือ
+                                <label class="text-danger">*</label>
+                              </div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="tell"
+                                  class="form-control"
+                                  id="mobilephone"
+                                  name="mobilephone"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">Line ID</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="lindID"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6"></div>
+                        </div>
+                        <!--ประวัติการทำงานประวัติการทำงานประวัติส่วนตัวประวัติส่วนตัวประวัติการทำงานประวัติการทำงานประวัติส่วนตัวประวัติส่วนตัว-->
+                        <div class="row">
+                          <div class="col-md-12">
+                            <h3>ประวัติการทำงาน</h3>
+                          </div>
+                        </div>
+                        <div class="row text-center">
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">แผนก</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="text"
+                                  class="form-control"
+                                  id="Position"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6"></div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">
+                                วันที่เริ่มทำงาน<label class="text-danger"
+                                  >*</label
+                                >
+                              </div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="startDate"
+                                  name="startDate"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">วันที่ลาออก</div>
+                              <div class="col-sm-7">
+                                <input
+                                  type="date"
+                                  class="form-control"
+                                  id="endDate"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6">
+                            <div class="form-group row">
+                              <div class="col-sm-4">สถานะพักงาน</div>
+                              <div class="col-sm-7">
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="workStatus"
+                                    checked
+                                  />
+                                  ทำงานอยู่
+                                </div>
+                                <div class="form-check form-check-inline">
+                                  <input
+                                    class="form-check-input"
+                                    type="radio"
+                                    name="workStatus"
+                                  />
+                                  ลาออก
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                          <div class="col-12 col-sm-6"></div>
+                          <div class="col-12 col-sm-6"></div>
+                          <div class="col-12 col-sm-6"></div>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- /.card -->
+                  </form>
+                </div>
+                <!-- /.container-fluid -->
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts {
+<script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function () {
+
+    jQuery.validator.addMethod("validID",function (value){  //สร้างฟังก์ชันมาสำหรับ valid id card  ของ jQuery.validator.addMethod(
+        if (value == '' || value == undefined) {
+            return false;
+        }
+        var arrayID = [];
+        for (var i = 0; i < 12; i++) {
+            arrayID.push(value.substring(i, i + 1) * (13 - i));
+        }
+        var digit = 11 - (arrayID.reduce(function (t, n) {
+            return t + n;
+        }) % 11);
+
+        digit = digit.toString().substring(digit.toString().length - 1);
+        return (value.substring(12) == digit) ? true : false;
+    });
+
+   
+
+
+    //var regxThNew = /^[u0E00–u0E7F]+$/;
+    var regxEn = /^[a-zA-Z]+$/;
+    var regxTh = /^[ก-์]+$/;
+    var regxUsername = /^[a-zA-Z0-9-_]+$/;
+    $.validator.setDefaults({
+        submitHandler: function () {
+        alert( "Form successful submitted!" );
+        }
+    });
+    $('#informationForm').validate({
+         rules: {
+            username: {
+                required: true,
+                pattern: regxUsername,
+                minlength: 8,
+                maxlength: 10
+                
+            },
+            password: {
+                required: true,
+                minlength: 8
+            },
+            email: {
+                email: true,
+            },
+            IDnumber: {
+                required: true,
+                minlength: 13,
+                maxlength: 13,
+                validID: true
+                
+            },
+            nameTH:{
+                required: true,
+                minlength: 3,
+                maxlength: 20,
+                pattern: regxTh
+            },
+            lastnameTH:{
+                required: true,
+                minlength: 3,
+                maxlength: 20,
+                pattern: regxTh
+            },
+            nameEN:{
+                required: true,
+                minlength: 3,
+                maxlength: 20,
+                pattern: regxEn
+            },
+            lastnameEN:{
+                required: true,
+                minlength: 3,
+                maxlength: 20,
+                pattern: regxEn
+
+            },
+            mobilephone: {
+                required: true
+            },
+            startDate: {
+                required: true
+            },
+            imageUp: {
+                accept: "image/*"
+            },
+            zipCode: {
+                minlength: 5,
+                maxlength: 5
+            }
+        },
+        messages: {
+            username: {
+                required: "กรุณากรอกข้อมูล",
+                pattern: "ห้ามใช้อักษรพิเศษ",
+                minlength: "กรุณากรอกข้อมูลให้มากกว่า 8 ตัวอักษร",
+                maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 10 ตัวอักษร"
+            },
+            password: {
+                required: "กรุณากรอกข้อมูล",
+                minlength: "กรุณากรอกข้อมูลให้มากกว่า 8 ตัวอักษร"
+            },
+            email: {
+                email: "กรุณากรอกข้อมูลให้ถูกต้อง"
+            },
+            IDnumber: {
+                required: "กรุณากรอกข้อมูล",
+                minlength: "กรุณากรอกข้อมูลให้ถูกต้อง",
+                maxlength: "กรุณากรอกข้อมูลให้ถูกต้อง",
+                validID: "เลขบัตรประชาชนไม่ถูกต้อง"
+            },
+            nameTH:{
+                required: "กรุณากรอกข้อมูล",
+                minlength: "กรุณากรอกข้อมูลให้มากกว่า 3 ตัวอักษร",
+                maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 20 ตัวอักษร",
+                pattern: "กรุณากรอกข้อมูลเป็นภาษาไทย"
+            },
+            lastnameTH:{
+                required: "กรุณากรอกข้อมูล",
+                minlength: "กรุณากรอกข้อมูลให้มากกว่า 3 ตัวอักษร",
+                maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 20 ตัวอักษร",
+                pattern: "กรุณากรอกข้อมูลเป็นภาษาไทย"
+            },
+            nameEN:{
+                required: "กรุณากรอกข้อมูล",
+                minlength: "กรุณากรอกข้อมูลให้มากกว่า 3 ตัวอักษร",
+                maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 20 ตัวอักษร",
+                pattern: "กรุณากรอกข้อมูลเป็นภาษาอังกฤษ"
+            },
+            lastnameEN:{
+                required: "กรุณากรอกข้อมูล",
+                minlength: "กรุณากรอกข้อมูลให้มากกว่า 3 ตัวอักษร",
+                maxlength: "กรุณากรอกข้อมูลให้น้อยกว่า 20 ตัวอักษร",
+                pattern: "กรุณากรอกข้อมูลเป็นภาษาอังกฤษ"
+            },
+            mobilephone: {
+                required: "กรุณากรอกข้อมูล"
+            },
+            startDate: {
+                required: "กรุณากรอกข้อมูล"
+            },
+            imageUp: {
+                accept: "กรุณาอัพโหลดไฟล์รูปภาพ"
+            },
+            zipCode: {
+                minlength: "กรุณากรอกข้อมูลให้ถูกต้อง",
+                maxlength: "กรุณากรอกข้อมูลให้ถูกต้อง"
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+    $("#infoCancel").click(function() { //clear validate
+        var validImportForm = $( "#informationForm" ).validate();
+        validImportForm.resetForm();
+    });
+});
+</script>
+}

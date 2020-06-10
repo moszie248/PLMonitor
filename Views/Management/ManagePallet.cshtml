@@ -1,0 +1,792 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+    <div class="content-header ni content-header-bg pad-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">หน้าหลัก</a></li>
+                        <li class="breadcrumb-item active">การจัดการพาเลท</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+    
+                            <section class="content">
+                            <div class="container-fluid">
+
+                                <form class="text-center mb-3">
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">เลขที่ใบสั่งซื้อ</label>
+                                                <div class="col-md col-lg-8 text-left">
+                                                    <select class="form-control select2bs4" id="dropdownInvoice">
+                                                        <option value="" disabled selected>โปรดเลือก</option>
+                                                        <option value="1">test</option>
+                                                        <option value="2">test</option>
+                                                        <option value="3">test</option>
+                                                        <option value="4">test</option>
+                                                        <option value="3">test</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-3 col-form-label">สถานะ</label>
+                                                <div class="col-md col-lg-8 text-left">
+                                                    <select class="form-control select2bs4" id="dropdownStatus">
+                                                        <option value="0" selected>ติดตั้งสำเร็จ</option>
+                                                        <option value="1">ติดตั้ง</option>
+                                                        <option value="2">เสียหาย</option>
+                                                        <option value="3">เสียหาย</option>
+                                                        <option value="4">ซ่อม RFID</option>
+                                                        <option value="5">ซ่อม Pallet</option>
+                                                        <option value="6">สูญหาย</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-3">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-block btn-success">
+                                                        <i class="fas fa-search fa-xs mr-2"></i>ค้นหา
+                                                    </button>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addPalletModal">
+                                                        <i class="fas fa-plus fa-xs mr-2"></i>
+                                                        สร้าง
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">รหัสพาเลท</label>
+                                                <div class="col-md col-lg-8 text-left">
+                                                    <select class="form-control select2bs4" id="dropdownPL">
+                                                        <option value="0" selected>ทั้งหมด</option>
+                                                        <option value="9">รอติดตั้ง</option>
+                                                        <option value="1">ติดตั้ง</option>
+                                                        <option value="2">เสียหาย</option>
+                                                        <option value="3">เสียหาย</option>
+                                                        <option value="4">ซ่อม RFID</option>
+                                                        <option value="5">ซ่อม Pallet</option>
+                                                        <option value="6">สูญหาย</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-3 col-form-label">รหัส RFID</label>
+                                                <div class="col-md col-lg-8 text-left">
+                                                    <select class="form-control select2bs4" id="dropdownRFID">
+                                                        <option value="0" selected>ทั้งหมด</option>
+                                                        <option value="1">ติดตั้ง</option>
+                                                        <option value="2">เสียหาย</option>
+                                                        <option value="3">เสียหาย</option>
+                                                        <option value="4">ซ่อม RFID</option>
+                                                        <option value="5">ซ่อม Pallet</option>
+                                                        <option value="6">สูญหาย</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-3">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-block btn-primary mr-3" data-toggle="modal" data-target="#importPalletModal">
+                                                        Import
+                                                    </button>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-block btn-primary">
+                                                        Template
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">วันที่ซื้อ</label>
+                                                <div class="col-md col-lg-8">
+                                                    <input type="date" class="form-control" id="inputDevice">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-3 col-form-label">ถึง</label>
+                                                <div class="col-md col-lg-8">
+                                                    <input type="date" class="form-control" id="inputDevice">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-3"></div>
+                                    </div>
+                                </form>
+
+                                <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                    <div class="spinnertable text-center">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            @* <span class="sr-only">Loading...</span> *@
+                                        </div>
+                                    </div>
+                                    @* <div class="spinnertable d-flex justify-content-center">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div> *@
+                                </div>
+                                <div class="createDataTable"></div>
+
+                            </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+
+    <!--Add pallet Modal ModaL-->
+    <form id="addPalletForm" method="POST" class="text-center">
+        <div class="modal fade bd-example-modal-xl" id="addPalletModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">สร้างพาเลท</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        เลขที่ใบสั่งซื้อ
+                                    </div>
+
+                                    <div class="col-sm-8 text-left">
+                                        <select class="form-control select2bs4" id="addInvoice" name="Invoice">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="1">test</option>
+                                            <option value="2">test</option>
+                                            <option value="3">test</option>
+                                            <option value="4">test</option>
+                                            <option value="3">test</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        สภาพความเสียหาย
+                                    </div>
+
+                                    <div class="col-sm-8 text-left">
+                                        <select class="form-control select2bs4" id="addDamage" name="Damage">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="1">5 %</option>
+                                            <option value="2">10 %</option>
+                                            <option value="3">15 %</option>
+                                            <option value="4">20 %</option>
+                                            <option value="5">25 %</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        วันที่ซื้อ<label class="text-danger">*</label>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" id="addBuyDate" name="BuyDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        วันที่หมดอายุ<label class="text-danger">*</label>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" id="addExpDate" name="ExpDate">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        รหัส/ชื่อ พาเลท
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="addPalletID" name="PalletID">   
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>         
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        รหัส RFID
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="addRFIDID" name="RFIDID">   
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="col-md-1">
+                                <button class="btn btn-primary">แสกน</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-success" id="addPalletSubmit">บันทึก</button>
+                        <button type="button" class="btn btn-danger" id="cancelAdd">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--EDIT Pallet Modal ModaL-->
+    <form id="editPalletForm" method="POST" class="text-center">
+        <div class="modal fade bd-example-modal-xl" id="editRFIDModal" tabindex="-1" role="dialog"
+            aria-labelledby="editRFIDModal" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="editRFIDModal">แก้ไขรายการ Pallet</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        เลขที่ใบสั่งซื้อ
+                                    </div>
+                                    <div class="col-sm-8 text-left">
+                                        <select class="form-control select2bs4" id="editInvoice" name="Invoice">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="1">test</option>
+                                            <option value="2">test</option>
+                                            <option value="3">test</option>
+                                            <option value="4">test</option>
+                                            <option value="3">test</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        สภาพความเสียหาย
+                                    </div>
+
+                                    <div class="col-sm-8 text-left">
+                                        <select class="form-control select2bs4" id="editDamage" name="Damage">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="1">5 %</option>
+                                            <option value="2">10 %</option>
+                                            <option value="3">15 %</option>
+                                            <option value="4">20 %</option>
+                                            <option value="3">25 %</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        วันที่ซื้อ<label class="text-danger">*</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" id="editBuyDate" name="BuyDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        วันที่หมดอายุ<label class="text-danger">*</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" id="editExpDate" name="ExpDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        สถานะ<label class="text-danger">*</label>
+                                    </div>
+                                    <div class="col-sm-8 text-left">
+                                        <select class="form-control select2bs4" id="editStatus" name="Status">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="0">รอติดตั้ง</option>
+                                            <option value="1">ติดตั้ง</option>
+                                            <option value="2">เสียหาย</option>
+                                            <option value="3">เสียหาย</option>
+                                            <option value="4">ซ่อม RFID</option>
+                                            <option value="5">ซ่อม Pallet</option>
+                                            <option value="6">สูญหาย</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        วันที่เสียหาย<label class="text-danger">*</label>
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="date" class="form-control" id="editDamageDate" name="DamageDate">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row"></div>
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        รหัส/ชื่อ พาเลท
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="editPalletID" name="PalletID">   
+                                    </div>
+                                </div> 
+                            </div>
+                        </div>                        
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-5">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        รหัส RFID
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="editRFIDID" name="RFIDID">   
+                                    </div>
+                                </div> 
+                            </div>
+                            <div class="col-md-1">
+                                <button type="submit" class="btn btn-primary">แสกน</button>
+                            </div>
+                        </div> 
+                        <div class="row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-10">
+                                <div class="form-group row">
+                                    <div class="col-sm-2">
+                                        รายละเอียด
+                                    </div>
+
+                                    <div class="col-sm-10">
+                                        <textarea class="form-control" id="editDrescription" name="Desc" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-2">
+                                <button type="submit" class="btn btn-success" id="editPalletSubmit">บันทึก</button>
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-danger" id="cancelEdit">ยกเลิก</button>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--importPalletModal -->
+    <form method="post" id="importForm" class="text-center">
+        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" id="importPalletModal">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">IMPORT พาเลท</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="form-group row">
+                            <div class="col-md-1"></div>
+                            <div class="col-md-2">พาเลท</div>
+                            <div class="col-md-8">
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" id="importPallet" name="importPallet" lang="th">
+                                    <label class="custom-file-label" for="customFile"></label>
+                                </div>
+                                @* <input type="file" class="form-control-file" id="importPallet" name="importPallet"> *@
+                            </div>
+                            <div class="col-md-1"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-success" id="importSubmit">ตกลง</button>
+                        <button type="reset" class="btn btn-danger" id="cancelImport">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    
+
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts {
+    <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script>
+        
+        document.nz.openMenu("#Management").activeMenu("#ManagePallet");
+
+    $(document).ready(function () {
+        loadTable();
+
+        document.__proto__.deleteRow = function () {
+            Swal.fire({
+            title: 'ต้องการลบข้อมูล ?',
+            text: "กดยืนยันเพื่อลบข้อมูล",
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'ยกเลิก',
+            confirmButtonText: 'ยืนยัน'
+            }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                icon: 'success',
+                title: 'สำเร็จ',
+                text: 'ลบข้อมูลแล้ว',
+                confirmButtonText: 'ยืนยัน'
+                })
+
+            }
+            })         
+        };  
+        /*---------------------------------------------form addpallet----------------------------*/
+        $("#addPalletSubmit").click(function() {
+            $.validator.setDefaults({
+                submitHandler: function () {
+                    var addData = $("#addPalletForm").serializeArray();
+                    $.ajax({
+                        url: '/Management/reciveAddPallet', // url where to submit the request
+                        type : "POST", // type of action POST || GET
+                        dataType : 'JSON', // data type
+                        //contentType: "application/json",
+                        data : addData, // post data || get data
+                        success : function(result) {
+                            console.log(result);
+                            Swal.fire({
+                            icon: 'success',
+                            title: 'สำเร็จ',
+                            text: 'บันทึกข้อมูลสำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+
+                            document.getElementById("addPalletForm").reset();
+                        },
+                        error: function(xhr, resp, text) {
+                            Swal.fire({
+                            icon: 'error',
+                            title: 'ผิดพลาด',
+                            text: 'บันทึกข้อมูลไม่สำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+                            console.log(xhr, resp, text);
+                        }
+                    })
+
+                }
+            });
+            $('#addPalletForm').validate({
+                rules: {
+                    BuyDate: {
+                        required: true
+                    },
+                    ExpDate: {
+                        required: true
+                    }
+                },
+                messages: {
+                    BuyDate: {
+                        required: "กรุณาระบุวันที่ซื้อ"
+                    },
+                    ExpDate: {
+                        required: "กรุณาระบุวันที่หมดอายุ"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+        $("#cancelAdd").click(function() { //clear validate
+            var validImportForm = $( "#addPalletForm" ).validate();
+            validImportForm.resetForm();
+        });
+
+        /*---------------------------------------------form editpallet ----------------------------*/
+        $("#editPalletSubmit").click(function() {
+                $.validator.setDefaults({
+                    submitHandler: function () {
+                        var addData = $("#editPalletForm").serializeArray();
+                        $.ajax({
+                            url: '/Management/reciveEditPallet', // url where to submit the request
+                            type : "POST", // type of action POST || GET
+                            dataType : 'JSON', // data type
+                            //contentType: "application/json",
+                            data : addData, // post data || get data
+                            success : function(result) {
+                                console.log(result);
+                                Swal.fire({
+                                icon: 'success',
+                                title: 'สำเร็จ',
+                                text: 'บันทึกข้อมูลสำเร็จ',
+                                confirmButtonText: 'ยืนยัน'
+                                })
+
+                                document.getElementById("editPalletForm").reset();
+                            },
+                            error: function(xhr, resp, text) {
+                                Swal.fire({
+                                icon: 'error',
+                                title: 'ผิดพลาด',
+                                text: 'บันทึกข้อมูลไม่สำเร็จ',
+                                confirmButtonText: 'ยืนยัน'
+                                })
+                                console.log(xhr, resp, text);
+                            }
+                        })
+
+                    }
+                });
+                $('#editPalletForm').validate({
+                    rules: {
+                        BuyDate: {
+                            required: true
+                        },
+                        ExpDate: {
+                            required: true
+                        },
+                        Status: {
+                            required: true
+                        },
+                        DamageDate: {
+                            required: true
+                        }
+                    },
+                    messages: {
+                        BuyDate: {
+                            required: "กรุณาระบุวันที่ซื้อ"
+                        },
+                        ExpDate: {
+                            required: "กรุณาระบุวันที่หมดอายุ"
+                        },
+                        Status: {
+                            required: "กรุณาระบุสถานะ"
+                        },
+                        DamageDate: {
+                            required: "กรุณาระบุวันที่เสัยหาย"
+                        }
+                    },
+                    errorElement: 'span',
+                    errorPlacement: function (error, element) {
+                        error.addClass('invalid-feedback');
+                        element.closest('.form-group').append(error);
+                    },
+                    highlight: function (element, errorClass, validClass) {
+                        $(element).addClass('is-invalid');
+                    },
+                    unhighlight: function (element, errorClass, validClass) {
+                        $(element).removeClass('is-invalid');
+                    }
+                });
+            });
+        $("#cancelEdit").click(function() { //clear validate
+            var validImportForm = $( "#editPalletForm" ).validate();
+            validImportForm.resetForm();
+        });
+
+        /*---------------------------------------form import validate ----------------------------------------------*/
+        $("#importSubmit").click(function() {
+            $.validator.setDefaults({
+                submitHandler: function () {
+
+                alert( "Form successful submitted!" );
+                form.submit();
+                $('#importForm').reset();
+                }
+            });
+            $('#importForm').validate({
+                rules: {
+                    importPallet: {
+                        required: true,
+                        extension: "xls|xlsx|csv"
+                    }
+                },
+                messages: {
+                    importPallet: {
+                        required: "กรุณาอัพโหลดไฟล์",
+                        extension: "กรุณาอัพโหลดไฟล์ Excel"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+        $("#cancelImport").click(function() { //clear validate
+            var validImportForm = $( "#importForm" ).validate();
+            validImportForm.resetForm();
+        });
+    
+
+        function loadTable() {
+            $('.spinnertable').show();
+            $('.createDataTable').empty();
+            var htmlStr = '<table id="createDataTable" class="table table-striped table-bordered table-hover" style="width:100%">'
+                +'<thead>'
+                    +'<tr>'
+                        +'<th>No.</th>'
+                        +'<th>รหัส/ชื่อพาเลท</th>'
+                        +'<th>รหัส RFID </th>'
+                        +'<th>ชื่อล็อต</th>'
+                        +'<th>ค่าความเสียหาย</th>'
+                        +'<th>วันที่ซื้อ</th>'
+                        +'<th>วันหมดอายุ</th>'
+                        +'<th>วันทำรายการล่าสุด</th>'
+                        +'<th>สถานะ</th>'
+                        +'<th>รายละเอียด</th>'
+                        +'<th></th>'
+                    +'</tr>'
+                +'</thead>'
+            +'<tbody>';
+            for( var i = 0; i < 30; i++ ) {
+                htmlStr += '<tr>'
+                    +'<td>'+(i+1)+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+'<a asp-controller="Management" asp-action="DetailRFID">link</a>'+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td class="d-flex justify-content-lg-center">'
+                        +'<a href="#"><i class="fas fa-edit mr-3" data-toggle="modal" data-target="#editRFIDModal" ></i></a>'
+                        +'<a href="#"><i class="fas fa-trash" onclick="deleteRow()" style="color:red"></i></a>'
+                        +'</td>'
+                +'</tr>';
+            }
+            htmlStr += '</tbody>'
+            +'</table>';  
+
+            $('.createDataTable').html(`<div class="table-responsive">${htmlStr}</div>`);
+            $("#createDataTable").DataTable({
+                dom: `<'row'<'col-sm-12'l>>
+                    <'row'<'col-sm-12'tr>>
+                    <'row'<'col-sm-6'i><'col-sm-6'p>>`,
+                drawCallback: function (settings) {
+                    $('.spinnertable').hide();
+                }
+            });
+        };
+    
+    });
+                            
+    </script>
+}

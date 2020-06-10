@@ -1,0 +1,635 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header ni content-header-bg pad-0">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-12">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a asp-controller="Home" asp-action="Index">หน้าหลัก</a>
+            </li>
+            <li class="breadcrumb-item active">การจัดการข้อมูลบริษัท</li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <section class="content">
+                <div class="container-fluid">
+
+                  <form class="text-center mb-3">
+                      <div class="form-group row justify-content-center">
+                          <div class="col-12 col-lg-4">
+                              <div class="form-group row">
+                                  <label for="" class="col-md-3 col-lg-4 col-form-label">รหัสบริษัท</label>
+                                  <div class="col-md col-lg-8">
+                                      <input type="text" class="form-control" id="CompanyID" />
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-12 col-lg-4">
+                              <div class="form-group row">
+                                  <label for="" class="col-md-3 col-lg-4 col-form-label">ชื่อบริษัท</label>
+                                  <div class="col-md col-lg-8">
+                                      <input type="text" class="form-control" id="CompanyName" />
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-12 col-lg-3">
+                              <div class="row">
+                                  <div class="col">
+                                      <button type="button" class="btn btn-success btn-block">
+                                          <i class="fas fa-search fa-xs mr-2"></i>
+                                          ค้นหา
+                                      </button>
+                                  </div>
+                                  <div class="col">
+                                      <button type="button" class="btn btn-primary btn-block" data-toggle="modal"
+                                          data-target="#addModal">
+                                          <i class="fas fa-plus fa-xs mr-2"></i>
+                                          สร้าง
+                                      </button>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+
+                      <div class="form-group row justify-content-center">
+                          <div class="col-12 col-lg-4">
+                              <div class="form-group row">
+                                  <label for="" class="col-md-3 col-lg-4 col-form-label">สถานะ</label>
+                                  <div class="col-md col-lg-8 text-left">
+                                      <select class="form-control select2bs4" id="Status" name="Status">
+                                          <option value="0" selected>ทั้งหมด</option>
+                                          <option value="1">1</option>
+                                          <option value="2">2</option>
+                                          <option value="3">3</option>
+                                      </select>
+                                  </div>
+                              </div>
+                          </div>
+
+                          <div class="col-12 col-lg-4"></div>
+                          <div class="col-12 col-lg-3"></div>
+                      </div>
+
+                  </form>
+                    <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                        <div class="spinnertable text-center">
+                            <div class="spinner-grow text-primary" role="status">
+                                @* <span class="sr-only">Loading...</span> *@
+                            </div>
+                        </div>
+                    </div>
+                    <div class="createDataTable"></div>
+
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+
+  <!--addcompany Modal ModaL-->
+  <form id="addCompanyForm" class="text-center" method="POST">
+    <div
+      class="modal fade bd-example-modal-xl"
+      id="addModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              เพิ่มข้อมูลบริษัท
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              รหัสลูกค้า<label class="text-danger">*</label>
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="addCustomerID" name="CustomerID">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              ชื่อลูกค้า <label class="text-danger">*</label>
+                          </div>
+
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="addCustomerName" name="CustomerName">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              ชื่อผู้ติดต่อ
+                          </div>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" id="addContactName" name="ContactName">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              เบอร์โทรศัพท์
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="addTel" name="Tel">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              อีเมล
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="addMail" name="Mail">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              เบอร์โทรศัพท์มือถือ
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="addPhone" name="Phone">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                              ที่อยู่ผู้ขาย
+                          </div>
+                          <div class="col-sm-8">
+                              <textarea class="form-control" id="addAddress" name="Address" rows="2"></textarea>
+                          </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                              โทรสาร
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="addFax" name="Fax">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                              หมายเหตุ
+                          </div>
+                          <div class="col-sm-8">
+                              <textarea class="form-control" id="addNote" name="Note"
+                                  rows="2"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="submit" class="btn btn-success" id="companySubmit">
+              บันทึก
+            </button>
+            <button type="button" class="btn btn-danger" id="cencelcompanySubmit">
+              ยกเลิก
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!--EDIT company ModaL-->
+  <form id="editCompanyForm" class="text-center" method="POST">
+    <div
+      class="modal fade bd-example-modal-xl"
+      id="editModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              แก้ไขข้อมูลบริษัท
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+              <div class="row">
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              รหัสลูกค้า<label class="text-danger">*</label>
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="editCustomerID" name="CustomerID">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              ชื่อลูกค้า <label class="text-danger">*</label>
+                          </div>
+
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="editCustomerName" name="CustomerName">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              ชื่อผู้ติดต่อ
+                          </div>
+                          <div class="col-sm-8">
+                            <input type="text" class="form-control" id="editContactName" name="ContactName">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              เบอร์โทรศัพท์
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="editTel" name="Tel">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              อีเมล
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="editMail" name="Mail">
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col">
+                      <div class="form-group row">
+                          <div class="col-sm-4">
+                              เบอร์โทรศัพท์มือถือ
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="editPhone" name="Phone">
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                              ที่อยู่ผู้ขาย
+                          </div>
+                          <div class="col-sm-8">
+                              <textarea class="form-control" id="editAddress" name="Address" rows="2"></textarea>
+                          </div>
+                      </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col">
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                              โทรสาร
+                          </div>
+                          <div class="col-sm-8">
+                              <input type="text" class="form-control" id="editFax" name="Fax">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col">
+                        <div class="form-group row">
+                          <div class="col-sm-4">
+                              หมายเหตุ
+                          </div>
+                          <div class="col-sm-8">
+                              <textarea class="form-control" id="editNote" name="Note"
+                                  rows="2"></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+          </div>
+          <div class="modal-footer justify-content-center">
+            <button type="submit" class="btn btn-success" id="addEdit">
+              บันทึก
+            </button>
+            <button btype="button" class="btn btn-danger" id="cancelEdit">
+              ยกเลิก
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+  
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts {
+    <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+<script>
+
+    document.nz.openMenu("#SettingManage, #SettingManageDataCus").activeMenu("#Company");
+
+    $(document).ready(function () {
+        loadTable();
+
+        document.__proto__.deleteRow = function () {
+            Swal.fire({
+            title: 'ต้องการลบข้อมูล ?',
+            text: "กดยืนยันเพื่อลบข้อมูล",
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'ยกเลิก',
+            confirmButtonText: 'ยืนยัน'
+            }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                icon: 'success',
+                title: 'สำเร็จ',
+                text: 'ลบข้อมูลแล้ว',
+                confirmButtonText: 'ยืนยัน'
+                })
+
+            }
+            })         
+        }; 
+
+        /*---------------------------------------------form----------------------------*/
+        $("#companySubmit").click(function() {  //validate form ของการเพิ่มข้อมูลบริษัท
+            $.validator.setDefaults({
+                submitHandler: function () {
+                var addData = $("#addCompanyForm").serializeArray();
+                $.ajax({
+                    url: '/SettingManage/reciveAddCompany', // url where to submit the request
+                    type : "POST", // type of action POST || GET
+                    dataType : 'JSON', // data type
+                    //contentType: "application/json",
+                    data : addData, // post data || get data
+                    success : function(result) {
+                        console.log(result);
+                        Swal.fire({
+                        icon: 'success',
+                        title: 'สำเร็จ',
+                        text: 'บันทึกข้อมูลสำเร็จ',
+                        confirmButtonText: 'ยืนยัน'
+                        })
+
+                        document.getElementById("addCompanyForm").reset();
+                    },
+                    error: function(xhr, resp, text) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'ผิดพลาด',
+                        text: 'บันทึกข้อมูลไม่สำเร็จ',
+                        confirmButtonText: 'ยืนยัน'
+                        })
+                        console.log(xhr, resp, text);
+                    }
+                })
+                }
+            });
+            $('#addCompanyForm').validate({
+                rules: {
+                    CustomerID: {
+                        required: true
+                    },
+                    CustomerName: {
+                        required: true
+                    }
+                },
+                messages: {
+                    CustomerID: {
+                        required: "กรุณาระบุรหัสลูกค้า"
+                    },
+                    CustomerName: {
+                        required: "กรุณาระบุชื่อลูกค้า"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });  
+        $("#cencelcompanySubmit").click(function() { //clear validate
+            var validImportForm = $( "#addCompanyForm" ).validate();
+            validImportForm.resetForm();
+        });
+
+        /*---------------------------------------form validate ----------------------------------------------*/
+        $("#addEdit").click(function() {  //validate form ของการแก้ไขข้อมูลบริษัท
+            $.validator.setDefaults({
+                submitHandler: function () {
+                var addData = $("#editCompanyForm").serializeArray();
+                $.ajax({
+                    url: '/SettingManage/reciveEditCompany', // url where to submit the request
+                    type : "POST", // type of action POST || GET
+                    dataType : 'JSON', // data type
+                    //contentType: "application/json",
+                    data : addData, // post data || get data
+                    success : function(result) {
+                        console.log(result);
+                        Swal.fire({
+                        icon: 'success',
+                        title: 'สำเร็จ',
+                        text: 'บันทึกข้อมูลสำเร็จ',
+                        confirmButtonText: 'ยืนยัน'
+                        })
+
+                        document.getElementById("editCompanyForm").reset();
+                    },
+                    error: function(xhr, resp, text) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'ผิดพลาด',
+                        text: 'บันทึกข้อมูลไม่สำเร็จ',
+                        confirmButtonText: 'ยืนยัน'
+                        })
+                        console.log(xhr, resp, text);
+                    }
+                })
+                }
+            });
+            $('#editCompanyForm').validate({
+                rules: {
+                    CustomerID: {
+                        required: true
+                    },
+                    CustomerName: {
+                        required: true
+                    }
+                },
+                messages: {
+                    CustomerID: {
+                        required: "กรุณาระบุรหัสลูกค้า"
+                    },
+                    CustomerName: {
+                        required: "กรุณาระบุชื่อลูกค้า"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        }); 
+        $("#cancelEdit").click(function() { //clear validate
+            var validImportForm = $( "#editCompanyForm" ).validate();
+            validImportForm.resetForm();
+        }); 
+
+        function loadTable() {
+            $('.spinnertable').show();
+            $('.createDataTable').empty(); 
+            var htmlStr = '<table id="createDataTable" class="table table-striped table-bordered table-hover" style="width:100%">'
+                +'<thead>'
+                    +'<tr>'
+                        +'<th>No.</th>'
+                        +'<th>รหัสบริษัท</th>'
+                        +'<th>ชื่อบริษัท</th>'
+                        +'<th>รายละเอียด</th>'
+                        +'<th>สถานะ</th>'      
+                        +'<th></th>'
+                    +'</tr>'
+                +'</thead>'
+            +'<tbody>';
+            for( var i = 0; i < 30; i++ ) {
+                htmlStr += '<tr>'
+                    +'<td>'+parseInt(i+1)+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+'xxxxx'+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td class="d-flex justify-content-lg-center">'
+                        +'<a href="javascript:void(0)"><i class="fas fa-edit" data-toggle="modal" data-target="#editModal" ></i></a> '
+                        +'<pre></pre>'
+                        +'<a href="javascript:void(0)"><i class="fas fa-trash" style="color:red" onclick="deleteRow()"></i></a>'
+                        +'</td>'
+                +'</tr>';
+            }
+            htmlStr += '</tbody>'
+            +'</table>';  
+
+            $('.createDataTable').html(`<div class="table-responsive">${htmlStr}</div>`);
+            $("#createDataTable").DataTable({
+                dom: `<'row'<'col-sm-12'l>>
+                    <'row'<'col-sm-12'tr>>
+                    <'row'<'col-sm-6'i><'col-sm-6'p>>`,
+                drawCallback: function (settings) {
+                    $('.spinnertable').hide();
+                }
+            });
+        };
+
+
+    });
+
+
+                               
+                          
+</script>
+}

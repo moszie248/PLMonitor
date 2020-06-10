@@ -1,0 +1,949 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+    <div class="content-header ni content-header-bg pad-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">หน้าหลัก</a></li>
+                        <li class="breadcrumb-item active">บันทึกใบสั่งซื้อ</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <section class="content">
+                                <div class="container-fluid">
+
+                                    <form class="text-center mb-3">
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">เลขที่ใบสั่งซื้อ</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="text" class="form-control" id="PurchaseOrder" name="PurchaseOrder" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-3 col-form-label">จำนวน</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="text" class="form-control" id="Number" name="Number"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-3">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <button type="button" class="btn btn-block btn-success">
+                                                            <i class="fas fa-search fa-xs mr-2"></i>ค้นหา
+                                                        </button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addModal">
+                                                            <i class="fas fa-plus fa-xs mr-2"></i>
+                                                            สร้าง
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">เลขที่ใบส่งของ</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="text" class="form-control" id="Invoice" name="Invoice" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-3 col-form-label">รายการ</label>
+                                                    <div class="col-md col-lg-8 text-left">
+                                                        <select class="form-control select2bs4" id="dropdownList">
+                                                            <option value="0" selected>ทั้งหมด</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-3"></div>
+
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">ชื่อผู้ขาย</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="sellerName">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-4"></div>
+                                            <div class="col-12 col-lg-3"></div>
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">วันที่ซื้อ</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="buyDate" name="buyDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-3 col-form-label">ถึง</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="endBuyDate" name="endBuyDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-3"></div>
+
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">กำหนดส่ง</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="dueDate" name="dueDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-3 col-form-label">ถึง</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="endDueDate" name="endDueDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            
+                                            <div class="col-12 col-lg-3"></div>
+
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">วันที่รับ</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="reciveDate" name="reciveDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-3 col-form-label">ถึง</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="endReciveDate" name="endReciveDate" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-3"></div>
+
+                                        </div>
+                                    </form>
+
+                                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                                    <li class="nav-item">
+                                        <a class="nav-link active" id="all-tab" data-toggle="tab" href="#all" role="tab" aria-controls="all" aria-selected="true">ทั้งหมด</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="wait-tab" data-toggle="tab" href="#wait" role="tab" aria-controls="wait" aria-selected="false" onclick="loadTable()">รอรับ</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link" id="done-tab" data-toggle="tab" href="#done" role="tab" aria-controls="done" aria-selected="false" onclick="loadTable()">สำเร็จ</a>
+                                    </li>
+                                </ul>
+                                <div class="form-row"><br /></div>
+                                <div class="tab-content" id="myTabContent">
+                                    <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
+                                        <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                            <div class="spinnertable text-center">
+                                                <div class="spinner-grow text-primary" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="createDataTable"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="wait" role="tabpanel" aria-labelledby="wait-tab">
+                                        <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                            <div class="spinnertable text-center">
+                                                <div class="spinner-grow text-primary" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="createDataTable"></div>
+                                    </div>
+                                    <div class="tab-pane fade" id="done" role="tabpanel" aria-labelledby="done-tab">
+                                        <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                            <div class="spinnertable text-center">
+                                                <div class="spinner-grow text-primary" role="status">
+                                                    <span class="sr-only">Loading...</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="createDataTable"></div>
+                                    </div>
+                                </div>                                        
+                            </section>
+
+
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+
+    <!--ADD Pallet Modal ModaL-->
+    <form action="#" method="post" id="addPurchaseForm">
+        <div class="modal fade bd-example-modal-xl" id="addModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLongTitle">สร้างใบสั่งซื้อ</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-1"></div>
+                            <div class="col-10">
+                                <div class="row text-center">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">เลขที่ใบสั่งซื้อ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addPurchaseID" name="addPurchaseID">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">วันที่ซื้อ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="date" class="form-control" id="addBuyDate" name="addBuyDate">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">ชื่อผู้ขาย<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addSeller" name="addSeller">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">กำหนดส่งสินค้า</div>
+                                            <div class="col-sm-7">
+                                                <input type="date" class="form-control" id="addDeadline" name="addDeadline">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">ที่อยู่ผู้ขาย</div>
+                                            <div class="col-sm-7">
+                                                <textarea class="form-control" id="addAddress" name="addAddress" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">โทรสาร</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addFax" name="addFax">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">ชื่อผู้ติดต่อ</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addContactName" name="addContactName">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">เบอร์โทร</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addTel" name="addTel">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">รายการ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7 text-left">
+                                                <select class="form-control select2bs4" id="addList" name="addList">
+                                                    <option value="" disabled selected>โปรดเลือก</option>
+                                                    <option value="1">พาเลท</option>
+                                                    <option value="2">RFID</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">จำนวน<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addNumber" name="addNumber">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">ราคาต่อหน่วย</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addPrice" name="addPrice">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">รวมราคา</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addTotal" name="addTotal">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" id="waitAdd" name="addStatus" value="wait" onclick="showAddInput()">
+                                                    รอรับสินค้า
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" id="reciveAdd" name="addStatus" value="received" onclick="showAddInput()" checked>
+                                                    ได้รับสินค้า
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6"></div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">เลขที่ใบรับของ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addReciveID" name="addReciveID" >
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">รับจำนวน<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="addPiece" name="addPiece" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">วันที่รับ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="date" class="form-control" id="addReciveDate" name="addReciveDate" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-1"></div>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-success" id="addPurchaseSubmit">บันทึก</button>
+                        <button type="reset" class="btn btn-danger" id="cancelAdd">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--EDIT Pallet Modal ModaL-->
+    <form action="#" method="post" id="editPurchaseForm">
+        <div class="modal fade bd-example-modal-xl" id="editModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">แก้ไขใบสั่งซื้อ</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row"><br></div>
+                    <div class="row">
+                        <div class="col-1"></div>
+                            <div class="col-10">
+                                <div class="row text-center">
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">เลขที่ใบสั่งซื้อ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPurchaseNo" name="editPurchaseNo">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">วันที่ซื้อ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="date" class="form-control" id="editPurchaseBuyDate" name="editPurchaseBuyDate">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">ชื่อผู้ขาย<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPurchaseSeller" name="editPurchaseSeller">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">กำหนดส่งสินค้า</div>
+                                            <div class="col-sm-7">
+                                                <input type="date" class="form-control" id="editPurchaseBuyDate" name="editPurchaseBuyDate">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">ที่อยู่ผู้ขาย</div>
+                                            <div class="col-sm-7">
+                                                <textarea class="form-control" id="editPurchaseAddress" name="editPurchaseAddress" rows="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">โทรสาร</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPurchaseFax" name="editPurchaseFax">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">ชื่อผู้ติดต่อ</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPurchaseContactName" name="editPurchaseContactName">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">เบอร์โทร</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPurchaseTell" name="editPurchaseTell">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">รายการ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7 text-left">
+                                                <select class="form-control select2bs4" id="editPurchaseList" name="editPurchaseList">
+                                                    <option value="" disabled selected>โปรดเลือก</option>
+                                                    <option value="1">พาเลท</option>
+                                                    <option value="2">RFID</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">จำนวน<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPurchaseNumber" name="editPurchaseNumber">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">ราคาต่อหน่วย</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPurchasePerPrice" name="editPurchasePerPrice">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">รวมราคา</div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPurchaseTotalPrice" name="editPurchaseTotalPrice">
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col">
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" id="wait" name="editPurchaseStatus" value="wait" onclick="showInput()">
+                                                    รอรับสินค้า
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" id="recive" name="editPurchaseStatus" value="received" onclick="showInput()" checked>
+                                                    ได้รับสินค้า
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6"></div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">เลขที่ใบรับของ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editReciveID" name="editReciveID" >
+                                            </div>
+                                        </div>
+                                    </div> 
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">รับจำนวน<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="text" class="form-control" id="editPiece" name="editPiece" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 col-sm-6">
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">วันที่รับ<label class="text-danger">*</label></div>
+                                            <div class="col-sm-7">
+                                                <input type="date" class="form-control" id="editReciveDate" name="editReciveDate" >
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <div class="col-1"></div>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="submit" class="btn btn-success" id="editPurchaseSubmit">บันทึก</button>
+                    <button type="reset" class="btn btn-danger" id="cancelEdit">ยกเลิก</button>
+                </div>
+            </div>
+        </div>
+        </div>
+    </form>
+
+
+
+
+</div>
+<!-- /.content-wrapper -->
+
+
+
+
+
+
+@section Scripts {
+    <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script>
+        
+        document.nz.openMenu("#Management").activeMenu("#ManagePurchase");
+
+    $(document).ready(function () {
+        loadTable();
+
+        document.__proto__.showInput = function(){
+
+            var reciveID = document.getElementById("editReciveID");
+            var reciveDate = document.getElementById('editReciveDate');
+            var piece = document.getElementById('editPiece');
+
+            if(document.getElementById("recive").checked){
+                reciveID.value = "";
+                reciveDate.value = "";
+                piece.value = "";
+                reciveID.disabled=false;
+                reciveDate.disabled=false;
+                piece.disabled=false;
+            } else {
+                reciveID.value = "";
+                reciveDate.value = "";
+                piece.value = "";
+                reciveID.disabled=true;
+                reciveDate.disabled=true;
+                piece.disabled=true;
+            }
+
+        };
+
+        document.__proto__.showAddInput = function(){
+
+            var reciveID = document.getElementById("addReciveID");
+            var reciveDate = document.getElementById('addReciveDate');
+            var piece = document.getElementById('addPiece');
+
+            if(document.getElementById("reciveAdd").checked){
+                reciveID.value = "";
+                reciveDate.value = "";
+                piece.value = "";
+                reciveID.disabled=false;
+                reciveDate.disabled=false;
+                piece.disabled=false;
+            } else {
+                reciveID.value = "";
+                reciveDate.value = "";
+                piece.value = "";
+                reciveID.disabled=true;
+                reciveDate.disabled=true;
+                piece.disabled=true;
+            }
+
+        };
+
+        document.__proto__.deleteRow = function () {
+            Swal.fire({
+            title: 'ต้องการลบข้อมูล ?',
+            text: "กดยืนยันเพื่อลบข้อมูล",
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'ยกเลิก',
+            confirmButtonText: 'ยืนยัน'
+            }).then((result) => {
+            if (result.value) {
+                Swal.fire({
+                icon: 'success',
+                title: 'สำเร็จ',
+                text: 'ลบข้อมูลแล้ว',
+                confirmButtonText: 'ยืนยัน'
+                })
+
+            }
+            })         
+        };
+
+        /*---------------------------------------------form----------------------------*/
+        $("#editPurchaseSubmit").click(function() {
+            $.validator.setDefaults({
+                submitHandler: function () {
+                    var addData = $("#editPurchaseForm").serializeArray();
+                    $.ajax({
+                        url: '/Management/reciveEditPruchase', // url where to submit the request
+                        type : "POST", // type of action POST || GET
+                        dataType : 'JSON', // data type
+                        //contentType: "application/json",
+                        data : addData, // post data || get data
+                        success : function(result) {
+                            console.log(result);
+                            Swal.fire({
+                            icon: 'success',
+                            title: 'สำเร็จ',
+                            text: 'บันทึกข้อมูลสำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+
+                            document.getElementById("editPurchaseForm").reset();
+                        },
+                        error: function(xhr, resp, text) {
+                            Swal.fire({
+                            icon: 'error',
+                            title: 'ผิดพลาด',
+                            text: 'บันทึกข้อมูลไม่สำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+                            console.log(xhr, resp, text);
+                        }
+                    })
+
+                }
+            });
+            $('#editPurchaseForm').validate({
+                rules: {
+                    editPurchaseNo: {
+                        required: true
+                    },
+                    editPurchaseBuyDate: {
+                        required: true
+                    },
+                    editPurchaseSeller: {
+                        required: true
+                    },
+                    editPurchaseList: {
+                        required: true
+                    },
+                    editPurchaseNumber: {
+                        required: true
+                    },
+                    editReciveID: {
+                        required: true
+                    },
+                    editPiece: {
+                        required: true
+                    },
+                    editReciveDate: {
+                        required: true
+                    }
+                },
+                messages: {
+                    editPurchaseNo: {
+                        required: "กรุณาระบุวันส่งคืน"
+                    },
+                    editPurchaseBuyDate: {
+                        required: "กรุณาระบุวันส่งคืน"
+                    },
+                    editPurchaseSeller: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    editPurchaseList: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    editPurchaseNumber: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    editReciveID: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    editPiece: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    editReciveDate: {
+                        required: "กรุณากรอกข้อมูล"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+        $("#cancelEdit").click(function() { //clear validate
+            var validImportForm = $( "#editPurchaseForm" ).validate();
+            validImportForm.resetForm();
+            document.getElementById('editPiece').disabled = false;
+            document.getElementById('editReciveDate').disabled = false;
+            document.getElementById('editReciveID').disabled = false;
+        });
+
+
+        /*---------------------------------------------form- add---------------------------*/
+        $("#addPurchaseSubmit").click(function() {
+            $.validator.setDefaults({
+                submitHandler: function () {
+                    var addData = $("#addPurchaseForm").serializeArray();
+                    $.ajax({
+                        url: '/Management/reciveAddPruchase', // url where to submit the request
+                        type : "POST", // type of action POST || GET
+                        dataType : 'JSON', // data type
+                        //contentType: "application/json",
+                        data : addData, // post data || get data
+                        success : function(result) {
+                            console.log(result);
+                            Swal.fire({
+                            icon: 'success',
+                            title: 'สำเร็จ',
+                            text: 'บันทึกข้อมูลสำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+
+                            document.getElementById("addPurchaseForm").reset();
+                        },
+                        error: function(xhr, resp, text) {
+                            Swal.fire({
+                            icon: 'error',
+                            title: 'ผิดพลาด',
+                            text: 'บันทึกข้อมูลไม่สำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+                            console.log(xhr, resp, text);
+                        }
+                    })
+
+                }
+            });
+            $('#addPurchaseForm').validate({
+                rules: {
+                    addPurchaseID: {
+                        required: true
+                    },
+                    addBuyDate: {
+                        required: true
+                    },
+                    addSeller: {
+                        required: true
+                    },
+                    addList: {
+                        required: true
+                    },
+                    addNumber: {
+                        required: true
+                    },
+                    addReciveID: {
+                        required: true
+                    },
+                    addPiece: {
+                        required: true
+                    },
+                    addReciveDate: {
+                        required: true
+                    }
+                },
+                messages: {
+                    addPurchaseID: {
+                        required: "กรุณาระบุวันส่งคืน"
+                    },
+                    addBuyDate: {
+                        required: "กรุณาระบุวันส่งคืน"
+                    },
+                    addSeller: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    addList: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    addNumber: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    addReciveID: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    addPiece: {
+                        required: "กรุณากรอกข้อมูล"
+                    },
+                    addReciveDate: {
+                        required: "กรุณากรอกข้อมูล"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+        $("#cancelAdd").click(function() { //clear validate
+            var validImportForm = $( "#addPurchaseForm" ).validate();
+            validImportForm.resetForm();
+            document.getElementById('addPiece').disabled = false;
+            document.getElementById('addReciveDate').disabled = false;
+            document.getElementById('addReciveID').disabled = false;
+
+        });
+
+        function loadTable() {
+            $('.spinnertable').show();
+            $('.createDataTable').empty(); 
+            var htmlStr = '<table id="createDataTable" class="display nowrap table table-bordered" style="width:100%">'
+                +'<thead>'
+                    +'<tr>'
+                        +'<th>No.</th>'
+                        +'<th>เลขที่ใบสั่งซื้อ</th>'
+                        +'<th>เลขที่ใบส่งของ RFID </th>'
+                        +'<th>ชื่อผู้ขาย</th>'
+                        +'<th>จำนวน</th>'
+                        +'<th>รายการ</th>'
+                        +'<th>วันที่ซื้อ</th>'
+                        +'<th>กำหนดส่ง</th>'
+                        +'<th>วันที่รับ</th>'
+                        +'<th>สภานะ</th>'
+                        +'<th>รายละเอียด</th>'
+                        +'<th></th>'
+                    +'</tr>'
+                +'</thead>'
+            +'<tbody>';
+            for( var i = 0; i < 30; i++ ) {
+                htmlStr += '<tr>'
+                    +'<td>'+parseInt(i+1)+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+'<a asp-controller="Management" asp-action="DetailRFID">link</a>'+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td class="d-flex justify-content-lg-center">'
+                        +'<a href="javascript:void(0)"><i class="fas fa-edit mr-3" data-toggle="modal" data-target="#editModal" ></i></a> '
+                        +'<a href="javascript:void(0)"><i class="fas fa-trash mr-3"  onclick="deleteRow()" style="color:red"></i></a>'
+                    +'</td>'
+                +'</tr>';
+            }
+            htmlStr += '</tbody>'             
+            +'</table>';  
+
+            $('.createDataTable').html(`<div class="table-responsive">${htmlStr}</div>`);
+            $("#createDataTable").DataTable({
+                dom: `<'row'<'col-sm-12'l>>
+                    <'row'<'col-sm-12'tr>>
+                    <'row'<'col-sm-6'i><'col-sm-6'p>>`,
+                drawCallback: function (settings) {
+                    $('.spinnertable').hide();
+                }
+            });
+        };
+
+
+    });  
+
+                            
+    </script>
+}

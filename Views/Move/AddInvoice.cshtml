@@ -1,0 +1,302 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+    <div class="content-header ni content-header-bg pad-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">หน้าหลัก</a></li>
+                        <li class="breadcrumb-item"><a asp-controller="Move" asp-action="MovePalletRFID">เคลื่อนย้าย Pallet&RFID</a></li>
+                        <li class="breadcrumb-item active">สร้างใบส่งของ</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+    
+                            <section class="content">
+                            <div class="container-fluid">
+
+                                <form class="text-center mb-3" id="AddForm">
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">ใบส่งของ *</label>
+                                                <div class="col-md col-lg-8">
+                                                    <input type="text" class="form-control" id="addInvoiceID" name="InvoiceID" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">จำนวนพาเลท</label>
+                                                <div class="col-md col-lg-8">
+                                                    <input type="text" class="form-control" id="addNumPallet" name="NumPallet" />
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-3">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <button type="sutmit" class="btn btn-block btn-success" id="addInvoice">
+                                                      บันทึก
+                                                    </button>
+                                                </div>
+                                                <div class="col">
+                                                    <button type="button" class="btn btn-block btn-danger" id="cancelInvoice">
+                                                      ยกเลิก
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">ลูกค้า</label>
+                                                <div class="col-md col-lg-8">
+                                                    <select class="custom-select" id="addCustomer" name="Customer">
+                                                        <option value="0" selected>ทั้งหมด</option>
+                                                        <option value="9">รอติดตั้ง</option>
+                                                        <option value="1">ติดตั้ง</option>
+                                                        <option value="2">เสียหาย</option>
+                                                        <option value="3">เสียหาย</option>
+                                                        <option value="4">ซ่อม RFID</option>
+                                                        <option value="5">ซ่อม Pallet</option>
+                                                        <option value="6">สูญหาย</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">สาขา/โกดัง</label>
+                                                <div class="col-md col-lg-8">
+                                                    <select class="custom-select" id="addBranch" name="Branch">
+                                                        <option value="0" selected>ทั้งหมด</option>
+                                                        <option value="1">ติดตั้ง</option>
+                                                        <option value="2">เสียหาย</option>
+                                                        <option value="3">เสียหาย</option>
+                                                        <option value="4">ซ่อม RFID</option>
+                                                        <option value="5">ซ่อม Pallet</option>
+                                                        <option value="6">สูญหาย</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-3"></div>
+
+                                    </div>
+
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">สถานะ</label>
+                                                <div class="col-md col-lg-8">
+                                                    <input type="text" class="form-control" id="addStatus" name="Status"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-4">
+                                          <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">วันที่รับ</label>
+                                                <div class="col-md col-lg-8">
+                                                    <input type="date" class="form-control" id="addReciveDate" name="ReciveDate">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-3"></div>
+                                    </div>
+
+                                    <div class="form-group row justify-content-center">
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">ทะเบียนรถ</label>
+                                                <div class="col-md col-lg-8">
+                                                    <input type="text" class="form-control" id="addCarLicense" name="CarLicense"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                <label for="" class="col-md-3 col-lg-4 col-form-label">คนขับรถ</label>
+                                                <div class="col-md col-lg-8">
+                                                    <input type="text" class="form-control" id="addDriver" name="Driver" />
+                                                </div>
+                                            </div>
+                                        
+                                        </div>
+                                        <div class="col-12 col-lg-3"></div>
+                                    </div>
+
+                                </form>
+
+                                <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                    <div class="spinnertable text-center">
+                                        <div class="spinner-grow text-primary" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="createDataTable"></div>
+
+                            </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts {
+    <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script>
+
+        document.nz.openMenu("#Move").activeMenu("#MovePalletRFID");
+
+$(document).ready(function () {
+    loadTable();
+    /*---------------------------------------------form----------------------------*/
+    $("#addInvoice").click(function() {
+        $.validator.setDefaults({
+            submitHandler: function () {
+                var addData = $("#AddForm").serializeArray();
+                $.ajax({
+                    url: '/Move/ReciveAddInvoice', // url where to submit the request
+                    type : "POST", // type of action POST || GET
+                    dataType : 'JSON', // data type
+                    //contentType: "application/json",
+                    data : addData, // post data || get data
+                    success : function(result) {
+                        console.log(result);
+                        Swal.fire({
+                        icon: 'success',
+                        title: 'สำเร็จ',
+                        text: 'บันทึกข้อมูลสำเร็จ',
+                        confirmButtonText: 'ยืนยัน'
+                        })
+
+                        document.getElementById("AddForm").reset();
+                    },
+                    error: function(xhr, resp, text) {
+                        Swal.fire({
+                        icon: 'error',
+                        title: 'ผิดพลาด',
+                        text: 'บันทึกข้อมูลไม่สำเร็จ',
+                        confirmButtonText: 'ยืนยัน'
+                        })
+                        console.log(xhr, resp, text);
+                    }
+                })
+
+            }
+        });
+        $('#AddForm').validate({
+            rules: {
+                InvoiceID: {
+                    required: true
+                }
+            },
+            messages: {
+                InvoiceID: {
+                    required: "กรุณากรอกข้อมูล"
+                }
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+                error.addClass('invalid-feedback');
+                element.closest('.form-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            }
+        });
+    });
+    $("#cancelInvoice").click(function() { //clear validate
+        var validImportForm = $( "#AddForm" ).validate();
+        validImportForm.resetForm();
+    });
+
+    function loadTable() {
+        $('.spinnertable').show();
+        $('.createDataTable').empty(); 
+        var htmlStr = '<table id="createDataTable" class="display nowrap table table-bordered" style="width:100%">'
+            +'<thead>'
+                +'<tr>'
+                    +'<th>No.</th>'
+                    +'<th>ใบส่งของ</th>'
+                    +'<th>เวลาที่ทำรายการ</th>'
+                    +'<th>RFID</th>'
+                    +'<th>พาเลท</th>'
+                    +'<th>ค่าความเสียหาย</th>'
+                    +'<th>ชื่อลูกค้า</th>'
+                    +'<th>สาขา/โกดัง</th>'
+                    +'<th>รายละเอียด</th>'
+                    +'<th>ทำโดย</th>'
+                    +'<th></th>'
+                +'</tr>'
+            +'</thead>'
+        +'<tbody>';
+        for( var i = 0; i < 30; i++ ) {
+            htmlStr += '<tr>'
+                +'<td>'+parseInt(i+1)+'</td>'
+                +'<td>'+"xxxxx"+'</td>'
+                +'<td>'+'<a asp-controller="Management" asp-action="DetailRFID">link</a>'+'</td>'
+                +'<td>'+"xxxxx"+'</td>'
+                +'<td>'+"xxxxx"+'</td>'
+                +'<td>'+"xxxxx"+'</td>'
+                +'<td>'+"xxxxx"+'</td>'
+                +'<td>'+"xxxxx"+'</td>'
+                +'<td>'+"xxxxx"+'</td>'
+                +'<td>'+"xxxxx"+'</td>'
+                +'<td class="d-flex justify-content-lg-center">'
+                    +'<a href="#"><i class="fas fa-edit mr-3" data-toggle="modal" data-target="#editRFIDModal" ></i></a> '
+                    +'<a href="#"><i class="fas fa-trash mr-3" data-toggle="modal" data-target="#deleteRowData" style="color:red"></i></a>'
+                    +'</td>'
+            +'</tr>';
+        }
+        htmlStr += '</tbody>'
+        +'</table>';  
+
+        $('.createDataTable').html(htmlStr); 
+        $("#createDataTable").DataTable({
+            "scrollY": 400,
+            "scrollX": true
+        });
+        $('.spinnertable').remove();
+    };
+
+});
+
+
+
+
+                                                  
+    </script>
+}

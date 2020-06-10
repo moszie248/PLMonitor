@@ -1,0 +1,222 @@
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ni content-header-bg pad-0">
+        <div class="container-fluid">
+            <div class="row">
+                <!-- <div class="col-sm-6">
+                    <h1 class="m-0 text-dark"></h1>
+                </div> --><!-- /.col -->
+                <div class="col-sm-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">หน้าหลัก</a></li>
+                        <li class="breadcrumb-item active">เคลื่อนย้าย Pallet&RFID</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+  
+        <!-- Main content -->
+        <div class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="card-body">
+                            <section class="content">
+                                <div class="container-fluid">
+
+
+                                    <form class="text-center mb-3">
+                                        <div class="form-group row justify-content-between">
+                                            <div class="col-12 col-lg-8">
+                                                <ul class="nav nav-tabs mr-auto mt-2 mt-lg-0" id="custom-content-below-tab" role="tablist">
+                                                    <li class="nav-item">
+                                                        <a class="nav-link active" id="out-tab" data-toggle="tab" href="#out" role="tabpanel" aria-controls="out"
+                                                            aria-selected="false" onclick="addBill()">ส่งออก</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link" id="in-tab" data-toggle="tab" href="#in" role="tabpanel"
+                                                            aria-controls="in" aria-selected="true" onclick="addInvoice()">รับเข้า</a>
+                                                    </li>
+                                                    <li class="nav-item">
+                                                        <a class="nav-link"  asp-controller="Move" asp-action="AddDamage" >เสียหาย</a>
+                                                    </li>
+                                                    <li class="nav-item" id="invoiceBtn" style="display: none;">
+                                                        <a class="nav-link"  asp-controller="Move" asp-action="AddInvoice">สร้างใบส่งของ</a>
+                                                    </li>
+                                                    <li class="nav-item"  id="billBtn" >
+                                                        <a class="nav-link"  asp-controller="Move" asp-action="AddBill" >สร้างใบแจ้งหนี้</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+
+
+
+                                            <div class="col-12 col-lg-4">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <div class="ni label-text red ml-3">
+                                                            นำเข้า
+                                                            <div class="detail">134000</div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col">
+                                                        <div class="ni label-text success ml-2">
+                                                            ส่งออก
+                                                            <div class="detail">170000</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
+
+<div class="tab-content" id="myTabContent">
+    <div class="tab-pane fade show active" id="out" role="tabpanel" aria-labelledby="out-tab">
+        <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+            <div class="spinnertable text-center">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div class="TableDiv"></div>
+    </div>
+    <div class="tab-pane fade" id="in" role="tabpanel" aria-labelledby="in-tab">
+        <div class="tab-pane fade" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+            <div class="spinnertable text-center">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+            </div>
+        </div>
+        <div class="TableDiv"></div>
+    </div>
+</div>     
+
+                                    @* <div class="form-group row justify-content-center">
+                                        <div class="col-12 col-lg-12">
+                                            <div class="tab-content" id="myTabContent">
+                                                <div class="tab-pane fade" id="out" role="tabpanel" aria-labelledby="out-tab">
+                                                    <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                                        <div class="spinner d-flex justify-content-center">
+                                                            <div class="spinner-grow text-primary" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="outTable"></div>
+                                                </div>
+
+                                                <div class="tab-pane fade show active" id="in" role="tabpanel" aria-labelledby="in-tab">
+                                                    <div class="tab-pane fade show active" id="pills-export" role="tabpanel"
+                                                        aria-labelledby="pills-export-tab">
+                                                        <div class="spinner d-flex justify-content-center">
+                                                            <div class="spinner-grow text-primary" role="status">
+                                                                <span class="sr-only">Loading...</span>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="inTable"></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> *@
+
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+
+
+
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts {
+
+<script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+<script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+<script>
+
+        document.nz.openMenu("#Move").activeMenu("#MovePalletRFID");
+
+    $(document).ready(function () {
+        loadTable();
+        
+        function loadTable(){
+            $('.spinnertable').show();
+            $('.TableDiv').empty(); 
+            var htmlStr = '<table id="Table" class="table table-striped table-bordered table-hover" style="width:100%">'
+                +'<thead>'
+                    +'<tr>'
+                        +'<th>No.</th>'
+                        +'<th>สถานะ</th>'
+                        +'<th>เวลา</th>'
+                        +'<th>RFID</th>'
+                        +'<th>พาเลท</th>'
+                        +'<th>ค่าความเสียหาย</th>'
+                        +'<th>รายละเอียด</th>'
+                    +'</tr>'
+                +'</thead>'
+            +'<tbody>';
+            for( var i = 0; i < 30; i++ ) {
+                htmlStr += '<tr>'
+                    +'<td>'+"invoice"+'</td>'
+                    +'<td>'+"zzzzz"+'</td>'
+                    +'<td>'+"zzzzz"+'</td>'
+                    +'<td>'+"zzzzz"+'</td>'
+                    +'<td>'+"zzzzz"+'</td>'
+                    +'<td>'+"zzzzz"+'</td>'
+                    +'<td>'+"zzzzz"+'</td>'
+                +'</tr>';
+            }
+            htmlStr += '</tbody>'
+            +'</table>';  
+
+            $('.TableDiv').html(`<div class="table-responsive">${htmlStr}</div>`);
+            $('#Table').DataTable({
+                dom: `<'row'<'col-sm-12'l>>
+                    <'row'<'col-sm-12'tr>>
+                    <'row'<'col-sm-6'i><'col-sm-6'p>>`,
+                drawCallback: function (settings) {
+                    $('.spinnertable').hide();
+                }
+            });
+        };
+        
+        document.__proto__.addBill = function(){
+
+            document.querySelector('#billBtn').style.display = 'block';
+            document.querySelector('#invoiceBtn').style.display = 'none';
+
+        }; 
+
+        document.__proto__.addInvoice = function(){
+            document.querySelector('#billBtn').style.display = 'none';
+            document.querySelector('#invoiceBtn').style.display = 'block';
+        };
+                
+    });  
+
+
+
+
+
+
+             
+</script>
+}

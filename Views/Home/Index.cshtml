@@ -1,0 +1,236 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <div class="content-header ni content-header-bg pad-0">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <!-- <div class="col-sm-6">
+                      <h1 class="m-0 text-dark"></h1>
+                  </div> --><!-- /.col -->
+        <div class="col-sm-12">
+          <ol class="breadcrumb float-sm-right">
+            <li class="breadcrumb-item">
+              <a asp-controller="Home" asp-action="Index">หน้าหลัก</a>
+            </li>
+          </ol>
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content-header -->
+
+  <!-- Main content -->
+  <div class="content">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <section class="content">
+                <div class="container-fluid">
+                  <!-- Small boxes (Stat box) -->
+                  <div class="row">
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-danger">
+                        <div class="inner">
+                          <div class="icon">
+                            <i class="fas fa-arrow-circle-up text-left"></i>
+                          </div>
+                          <h3>คงค้าง</h3>
+                          <h3>1700</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-success">
+                        <div class="inner">
+                          <div class="icon">
+                            <i class="fas fa-arrow-circle-down text-left"></i>
+                          </div>
+                          <h3>รับเข้า</h3>
+                          <h3>2500</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-secondary">
+                        <div class="inner">
+                          <h3 class="text-right">พาเลททั้งหมด</h3>
+                          <h3 class="text-right">5500</h3>
+                        </div>
+                        <div class="icon"></div>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                    <div class="col-lg-3 col-6">
+                      <!-- small box -->
+                      <div class="small-box bg-info">
+                        <div class="inner">
+                          <h3 class="text-right">คงเหลือ</h3>
+                          <h3 class="text-right">1300</h3>
+                        </div>
+                      </div>
+                    </div>
+                    <!-- ./col -->
+                  </div>
+                  <!-- /.row -->
+                </div>
+
+                <div class="row">
+                  <div class="col-md-7"></div>
+                  <div class="col-md-5">
+                    <div class="dropdown">
+                      <button
+                        class="btn btn-outline-dark"
+                        type="button"
+                        id="dropdownMenuButton"
+                      >
+                        รายเดือน
+                      </button>
+                      <button
+                        class="btn btn-outline-dark"
+                        type="button"
+                        id="dropdownMenuButton"
+                      >
+                        รายปี
+                      </button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row"><br /></div>
+
+                <div class="content">
+                  <div class="container-fluid">
+                    <div class="row"></div>
+                    <div class="row mb-2">
+                      <div class="col-sm-6"></div>
+                      <!-- /.col -->
+                      <div class="col-sm-12">
+                        <div class="row">
+                          <div class="col-1"></div>
+                          <div class="col-10">
+                            <div class="card">
+                              <div class="card-header border-0">
+                                <p class="text-center">
+                                  สัปดาที่ 1 มกราคม พ.ศ. 2563
+                                </p>
+                              </div>
+                              <div class="card-body">
+                                <!-- /.d-flex -->
+                                <div class="position-relative mb-4">
+                                  <div class="chart">
+                                    <canvas
+                                      id="barChart"
+                                      style="min-height: 250px; height: 350px; max-height: 350px; max-width: 100%;"
+                                    ></canvas>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <!-- /.col -->
+                    </div>
+                    <!-- /.row -->
+                  </div>
+                </div>
+                <!-- /.container-fluid -->
+              </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.container-fluid -->
+  </div>
+  <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts {
+  <script type ="text/javascript">
+  
+    document.nz.activeMenu("#Home");
+
+    $(function () {
+
+        var digiData = [100,300,23,44,62,132,7];
+        var elecData = [10,30,2,4,6,13,100];
+
+        function weekly(){
+          alert("sssss");
+        }
+
+
+
+        var labelData = ["Sunday","Monday","Tuesday","Thursday","Wednesday","Friday","Saturday"]
+        console.log(elecData);
+        
+        // Get context with jQuery - using jQuery's .get() method.
+        var areaChartData = {
+          labels  : ["Sunday","Monday","Tuesday","Thursday","Wednesday","Friday","Saturday"],
+          datasets: [
+            {
+              label               : 'Digital Goods',
+              backgroundColor     : '#116600',
+              borderColor         : 'rgba(60,141,188,0.8)',
+              pointRadius          : false,
+              pointColor          : '#3b8bba',
+              pointStrokeColor    : 'rgba(60,141,188,1)',
+              pointHighlightFill  : '#fff',
+              pointHighlightStroke: 'rgba(60,141,188,1)',
+              data                : [digiData[0],digiData[1],digiData[2],digiData[3],digiData[4],digiData[5],digiData[6]]
+            },
+            {
+              label               : 'Electronics',
+              backgroundColor     : '#990000',
+              borderColor         : 'rgba(210, 214, 222, 1)',
+              pointRadius         : false,
+              pointColor          : 'rgba(210, 214, 222, 1)',
+              pointStrokeColor    : '#c1c7d1',
+              pointHighlightFill  : '#fff',
+              pointHighlightStroke: 'rgba(220,220,220,1)',
+              data                : [elecData[0], elecData[1], elecData[2], elecData[3], elecData[4], elecData[5], elecData[6]]
+            },
+          ]
+        }
+
+        var barChartCanvas = $('#barChart').get(0).getContext('2d')
+        var barChartData = jQuery.extend(true, {}, areaChartData)
+        var temp0 = areaChartData.datasets[0]
+        var temp1 = areaChartData.datasets[1]
+        barChartData.datasets[0] = temp1
+        barChartData.datasets[1] = temp0
+
+        var barChartOptions = {
+          responsive              : true,
+          maintainAspectRatio     : false,
+          datasetFill             : false
+        }
+
+        var barChart = new Chart(barChartCanvas, {
+          type: 'bar', 
+          data: barChartData,
+          options: barChartOptions
+        }) 
+    });
+      
+    
+
+    </script>
+}

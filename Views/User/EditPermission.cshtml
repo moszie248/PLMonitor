@@ -1,0 +1,348 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+      <div class="content-header ni content-header-bg pad-0">
+          <div class="container-fluid">
+              <div class="row">
+                  <!-- <div class="col-sm-6">
+                      <h1 class="m-0 text-dark"></h1>
+                  </div> --><!-- /.col -->
+                  <div class="col-sm-12">
+                      <ol class="breadcrumb float-sm-right">
+                          <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">หน้าหลัก</a></li>
+                          <li class="breadcrumb-item"><a asp-controller="User" asp-action="Permision">สิทธิ์การใช้งาน</a></li>
+                          <li class="breadcrumb-item active">แก้ไขสิทธิ์การใช้งาน</li>
+                      </ol>
+                  </div><!-- /.col -->
+              </div><!-- /.row -->
+          </div><!-- /.container-fluid -->
+      </div>
+      <!-- /.content-header -->
+  
+      <!-- Main content -->
+      <div class="content">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-lg-12">
+                      <div class="card">
+                          <div class="card-body">
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <form>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-5 offset-lg-1">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-5 col-form-label">ชื่อสิทธิ์การใช้งาน</label>
+                                                    <div class="col-md col-lg-7 text-left">
+                                                        <input type="text" class="form-control" id="permissionName" name="permissionName" required>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-4">
+                                                <div class="row">
+                                                    <div class="col col-lg-4">
+                                                        <button type="submit" class="btn btn-block btn-success">บันทึก</button>
+                                                    </div>
+                                                    <div class="col col-lg-4">
+                                                        <button type="reset" class="btn btn-block btn-danger">ยกเลิก</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-5 offset-lg-1">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-5 col-form-label">รายละเอียดเพิ่มเติม</label>
+                                                    <div class="col-md col-lg-7 text-left">
+                                                        <input type="text" class="form-control" id="description">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="offset-lg-4"></div>
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-5 offset-lg-1">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-5 col-form-label">สถานะ</label>
+                                                    <div class="col-md col-lg-7 mt-2 text-left">
+                                                        <div class="icheck-primary d-inline mr-sm-3">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio1" value="on">
+                                                            <label class="form-check-label" for="inlineRadio1">เปิดใช้งาน</label>
+                                                        </div>
+                                                        <div class="icheck-primary d-inline">
+                                                            <input class="form-check-input" type="radio" name="inlineRadioOptions" id="inlineRadio2" value="off">
+                                                            <label class="form-check-label" for="inlineRadio2">ปิดใช้งาน</label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="offset-lg-4"></div>
+                                        </div>
+                                    </form>
+
+                                    <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                        <div class="spinnertable text-center">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                @* <span class="sr-only">Loading...</span> *@
+                                            </div>
+                                        </div>
+                                        <div class="createDataTable"></div>
+                                    </div>
+
+                                </div>
+                            </section>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+
+
+
+</div>
+<!-- /.content-wrapper -->
+
+@section Scripts {
+    <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+    <script type="text/javascript"></script>
+    <script>
+        (function(document){
+            document.openMenu("User");
+            document.activeMenu("Permision");
+
+            async function getValuesRolePermissionInfo(){
+                var body = {
+                    permissionName: $('#permissionName').val().trim(),
+                    description: $('#description').val().trim()
+                }
+
+                body.status = ($('#inlineRadio1')[0].checked == true) ? "on" : "off";
+                erm = $('#table');
+                tbody = erm[0].tBodies[0];
+                rows = tbody.rows;
+                obj = {};
+
+                for (var i = 0; i < rows.length; i++) {
+                    if (rows[i].cells[0].firstChild.firstChild.checked && rows[i].id.trim()) {
+                        var id = rows[i].id.replace(/^\D+/g, '');
+                        var idName = rows[i].id.slice(0, rows[i].id.search(id.slice(0, 1)))
+                        var tr = $(`tr.${idName}${Number(id) + 1}`);
+                        //Get app name
+                        var appName = rows[i].innerText.trim();
+                        obj[appName] = {};
+                        for (var r = 0; r < tr.length; r++) {
+                            if (tr[r].firstChild.firstChild.firstChild.checked) {
+                                //Get page name
+                                var pageName = tr[r].cells[0].innerText.trim().replace(/&/g, encodeURIComponent('&'));
+                                obj[appName][pageName] = {};
+                                var objTD = {};
+                                for (var d = 1; d < tr[r].cells.length; d++) {
+                                    //Get permission
+                                    objTD[document._column[d - 1]] = tr[r].cells[d].firstChild.firstChild.checked;
+                                }
+                                obj[appName][pageName] = objTD;
+                            }
+                        }
+                    }
+                }
+
+                body.role_permission_info = JSON.stringify(obj);
+                return body;
+            }
+
+            function renderRolePermissionInfo(obj){
+                erm = $('#table');
+                tbody = erm[0].tBodies[0];
+                rows = tbody.rows
+                for (var i = 0; i < rows.length; i++) {
+                    if (obj.hasOwnProperty(rows[i].cells[0].innerText.trim())) {
+                        $(rows[i].cells[0].firstChild.firstChild).click();
+
+                        var id = rows[i].id.replace(/^\D+/g, '');
+                        var idName = rows[i].id.slice(0, rows[i].id.search(id.slice(0, 1)))
+                        var tr = $(`tr.${idName}${Number(id) + 1}`);
+                        for (var r = 0; r < tr.length; r++) {
+                            if (obj[rows[i].cells[0].innerText.trim()].hasOwnProperty(tr[r].innerText.trim())) {
+                                tr[r].cells[0].firstChild.firstChild.click();
+                                for (var d = 1; d < tr[r].cells.length; d++) {
+                                    id = tr[r].cells[d].firstChild.firstChild.id.split("_")[0].trim();
+                                    // id = id.slice(0, 1).toUpperCase() + id.slice(1)
+                                    tr[r].cells[d].firstChild.firstChild.checked = obj[rows[i].cells[0].innerText.trim()][tr[r].innerText.trim()][id];
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
+
+            async function renderDataTable(data, language = "0") {
+                //if (!data) { return; }
+                $('.spinnertable').show();
+                //if (data.hasOwnProperty('info')) {
+                    //$('#permissionName').val(data['info']['role_id'])
+                    //$('#description').val(data['info']['role_name'])
+                //}
+
+                language = "1";
+
+                var pageName;
+                var th;
+                var td = "";
+                if(language == "0"){
+                    th = ["รายการ", "ดูรายการ", "สร้างรายการ", "แก้ไขข้อมูล", "ลบรายการ"];
+                    pageName = ["หน้าหลัก", "การจัดการพาเลท", "การเคลื่อนย้ายพาเลท", "การจัดการผู้ใช้งาน", "รายงาน", "ตั้งค่า"];
+                }else{
+                    th = ["List", "View", "Create", "Edit", "Delete"];
+                    pageName = ["Home", "Pallet Management", "Pallet Movement", "User Management", "Report", "Setting"];
+                }
+
+                var html = '<table id="table" class="table table-hover table-valign-middle" style="width:100%">'
+                    + '<thead class="text-center">'
+                    + '<tr>'
+                th.forEach((elm,i) => {
+                    html += '<th>' + elm + '</th>';
+                    if (i != (th.length - 1)){
+                        td += '<td></td>';
+                    }
+                });
+                html += '</tr>'
+                    + '</thead>'
+                    + '<tbody>';
+
+                for (let i = 0; i < pageName.length; i++) {
+                    html += '<tr id="' + pageName[i] + (i) + '" class="' + pageName[i] + (i + 1) + '">'
+                        // + '<td colspan="5">'
+                        + '<td>'
+                        + '<div class="icheck-primary d-inline ml-5" onchange="callGetSubFDataTable(this)">'
+                        + '<input type="checkbox" id="' + pageName[i] + (i + 1) + '">'
+                        + '<label for="' + pageName[i] + (i + 1) + '">' + pageName[i] + '</label></div>'
+                        + '</td>'
+                        + td
+                        + '</tr>';
+                }
+
+                html += '</tbody>'
+                    + '</table>';
+
+                $('.createDataTable').empty().html(html);
+                $('.spinnertable').hide();
+
+                var obj = {Report: {
+                    Summary:{Edit: true, View: true, Create: true, Delete: true}
+                }}
+                
+                renderRolePermissionInfo(obj);
+                
+                //test get value
+                console.dir(await getValuesRolePermissionInfo());
+            }
+
+            async function renderSubFDataTable(rowTable, language = "0") {
+                var table = document.getElementById('table');
+                var row = rowTable.parentNode.parentNode;
+                var rowIndex = row.rowIndex;
+                var chkClassName = row.firstChild.firstChild.firstChild.id;
+                var ermRow = document.getElementsByClassName(chkClassName);
+                
+                language = "1";
+
+                if (rowTable.childNodes[0].checked) {
+                        var pageName;
+                        if(language == "0"){
+                            column = ["สร้างรายการ", "แก้ไขข้อมูล", "ลบรายการ"];
+                            pageName = {
+                                "หน้าหลัก":["หน้าหลัก"],
+                                "การจัดการพาเลท":["RFID", "พาเลท", "ใบสั่งซื้อ"],
+                                "การเคลื่อนย้ายพาเลท":["การเคลื่อนย้าย Pallet&RFID", "ประวัติ"],
+                                "การจัดการผู้ใช้งาน":["ผู้ใช้งาน", "สิทธิ์การใช้งาน"],
+                                "รายงาน":["สรุปผลรวม", "ส่งออก-นำเข้า", "สถานะ"],
+                                "ตั้งค่า":["บริษัท", "สาขาหรือโกดัง", "เปอร์เซ็นความเสียหาย", "รายการอุปกรณ์", "สถานะ RFID", "สถานะพาเลท"]
+                            };
+                        }else{
+                            column = ["View", "Create", "Edit", "Delete"];
+                            pageName = {
+                                "Home":["Home"],
+                                "Pallet Management":["RFID", "Pallet", "Purchase Order"],
+                                "Pallet Movement":["Moving Pallet&RFID", "History"],
+                                "User Management":["User", "User Rights"],
+                                "Report":["Summary", "Out-IN", "Status"],
+                                "Setting":["Company", "Warehouse", "Damage percentage", "Equipment list", "Status RFID", "Status Pallet"]
+                            };
+                        }
+
+                        pageName = pageName[rowTable.innerText];
+                        if (!row.className) {
+                            for (var n = 0; n < ermRow.length; n++) {
+                                ermRow[n].style.display = 'table-row';
+                            }
+                        } else {
+                            document._column = column;
+                            for (var d = 0; d < pageName.length; d++) {
+                                var rowAdd = table.insertRow(++rowIndex);
+                                var idReplace = pageName[d].replace(/[.#*-+=?^$&%@{}()|[\]\\ ]/g, '').toLowerCase() + (rowIndex - 1);
+                                var appID = row.cells[0].firstChild.firstChild.id;
+
+                                rowAdd.className = chkClassName;
+                                rowAdd.insertCell(0).innerHTML = '<div class="icheck-primary d-inline ml-6" onchange="chkSubFDataTable(this)">'
+                                    + '<input type="checkbox" id="' + idReplace + '_' + appID + '">'
+                                    + '<label for="' + idReplace + '_' + appID + '">' + pageName[d] + '</label></div>';
+
+                                for (var i = 0; i < row.cells.length; i++) {
+                                    if (i + 1 == row.cells.length) {
+                                        rowAdd.cells[i].style.borderTop = 'none';
+                                        continue;
+                                    }
+                                    rowAdd.insertCell(i + 1).innerHTML = '<div class="icheck-primary d-inline">'
+                                        + '<input type="checkbox" id="' + column[i] + '_' + idReplace + '" disabled>'
+                                        + '<label for="' + column[i] + '_' + idReplace + '"></label></div>';
+                                    rowAdd.cells[i + 1].className = 'text-center';
+                                    rowAdd.cells[i].style.borderTop = 'none';
+                                }
+                            }
+
+                            row.className = '';
+
+                        }
+                } else {
+                    for (var n = 0; n < ermRow.length; n++) {
+                        ermRow[n].style.display = 'none';
+                    }
+                }
+            }
+
+            document.callGetSubFDataTable = async function (rowTable) {
+                await renderSubFDataTable(rowTable);
+            }
+
+            document.chkSubFDataTable = function (even) {
+                var id = even.firstChild.id.split('_')[0];
+                // var index = even.firstChild.id.split(/(\d+)/)[1];
+                if (even.firstChild.checked) {
+                    for (var i = 0; i < document._column.length; i++) {
+                        $(`#${document._column[i]}_${id}`).removeAttr('disabled');
+                        $(`#${document._column[i]}_${id}`)[0].checked = true;
+                    }
+                } else {
+                    for (var i = 0; i < document._column.length; i++) {
+                        $(`#${document._column[i]}_${id}`).attr('disabled', '');
+                    }
+                }
+            }
+
+            renderDataTable();
+        }(document));
+
+    </script>
+}

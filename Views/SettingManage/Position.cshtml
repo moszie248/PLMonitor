@@ -1,0 +1,637 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Content Wrapper. Contains page content -->
+<div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header ni content-header-bg pad-0">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <!-- <div class="col-sm-6">
+                      <h1 class="m-0 text-dark"></h1>
+                  </div> -->
+                <!-- /.col -->
+                <div class="col-sm-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">หน้าหลัก</a></li>
+                        <li class="breadcrumb-item active">การจัดการข้อมูล แผนก</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <section class="content">
+                                <div class="container-fluid">
+                                    <form class="text-center">
+                                        <div class="form-row"></div>
+                                        <div class="form-row">
+                                            <div class="form-group col-md-1"></div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        รหัสพนักงาน
+                                                    </div>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="text" class="form-control" id="inputDevice">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        ชื่อแผนก
+                                                    </div>
+
+                                                    <div class="col-sm-8">
+                                                        <select class="custom-select" id="inputGroupSelect01">
+                                                            <option value="" disabled selected>โปรดเลือก</option>
+                                                            <option value="1">ใช้งานได้</option>
+                                                            <option value="2">ซ่อมแซม</option>
+                                                            <option value="3">เสียหาย</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <button type="button" class="btn btn-success">ค้นหา</button>
+                                            </div>
+                                            <div class="form-group col-md-1">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#addModal">สร้าง</button>
+                                            </div>
+                                        </div>
+                                        <!--newline-->
+                                        <div class="form-row">
+                                            <div class="form-group col-md-1"></div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        ชื่อบริษัท
+                                                    </div>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="date" class="form-control" id="inputDevice">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group col-md-4">
+                                                <div class="form-group row">
+                                                    <div class="col-sm-4">
+                                                        สถานะ
+                                                    </div>
+
+                                                    <div class="col-sm-8">
+                                                        <input type="date" class="form-control" id="inputDevice">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-row"><br></div>
+                                    </form>
+
+
+                                    <div class="tab-pane fade show active" id="pills-export" role="tabpanel"
+                                        aria-labelledby="pills-export-tab">
+                                        <div class="spinnertable d-flex justify-content-center">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                        <div class="createDataTable"></div>
+                                    </div>
+
+                                </div>
+                            </section>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+
+    <!--CREATECREATECREATECREATECREATECREATECREATECREATECREATECREATECREATE ModaL-->
+    <form id="addPosition" method="POST" class="text-center">
+        <div class="modal fade bd-example-modal-lg" id="addModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">เพิ่มข้อมูล แผนก</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        รหัสแผนก
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="addPosID" name="PosID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        ชื่อแผนก <label class="text-danger">*</label>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="addPosName" name="PosName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        ชื่อบริษัท<label class="text-danger">*</label>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <select class="custom-select" id="addCompanyName" name="CompanyName">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="0">AAA</option>
+                                            <option value="1">BBB</option>
+                                            <option value="2">CCC</option>
+                                            <option value="3">DDD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        ชื่อสาขา/โกดัง
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <select class="custom-select" id="addBranchName" name="BranchName">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="0">AAA</option>
+                                            <option value="1">BBB</option>
+                                            <option value="2">CCC</option>
+                                            <option value="3">DDD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        รายละเอียด
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" id="addDesc" name="Desc" rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        สถานะ
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="Status" id="addStatusOn"
+                                                value="on">
+                                            เปิดใช้งาน
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="Status" id="addStatusOff"
+                                                value="off">
+                                            ปิดใช้งาน
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="submit" class="btn btn-success" id="addSubmit">บันทึก</button>
+                        <button type="button" class="btn btn-danger" id="addCancel">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <!--EDITEDITEDITEDITEDITEDITEDITEDITEDITEDITEDITEDITEDIT Modal ModaL-->
+    <form id="editPosition" method="POST" class="text-center">
+        <div class="modal fade bd-example-modal-lg" id="editPalletModal" tabindex="-1" role="dialog"
+            aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">แก้ไขข้อมูลแผนก</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        รหัสแผนก
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="editPosID" name="PosID">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        ชื่อแผนก <label class="text-danger">*</label>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" class="form-control" id="editPosName" name="PosName">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        ชื่อบริษัท <label class="text-danger">*</label>
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <select class="custom-select" id="editCompanyName" name="CompanyName">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="0">AAA</option>
+                                            <option value="1">BBB</option>
+                                            <option value="2">CCC</option>
+                                            <option value="3">DDD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        ชื่อสาขา/โกดัง
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <select class="custom-select" id="editBranchName" name="BranchName">
+                                            <option value="" disabled selected>โปรดเลือก</option>
+                                            <option value="0">AAA</option>
+                                            <option value="1">BBB</option>
+                                            <option value="2">CCC</option>
+                                            <option value="3">DDD</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        รายละเอียด
+                                    </div>
+                                    <div class="col-sm-8">
+                                        <textarea class="form-control" id="editDesc" name="Desc"
+                                            rows="2"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                        <div class="row">
+                            <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <div class="form-group row">
+                                    <div class="col-sm-4">
+                                        สถานะ
+                                    </div>
+
+                                    <div class="col-sm-8">
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="Status"
+                                                id="editStatusOn" value="on">
+                                            เปิดใช้งาน
+                                        </div>
+                                        <div class="form-check form-check-inline">
+                                            <input class="form-check-input" type="radio" name="Status"
+                                                id="editStatusOff" value="off">
+                                            ปิดใช้งาน
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-2"></div>
+                        </div>
+                        <div class="row"><br></div>
+                    </div>
+                    <div class="modal-footer justify-content-center">
+                        <button type="sutmit" class="btn btn-success" id="editSubmit">บันทึก</button>
+                        <button type="button" class="btn btn-danger" id="editCancel">ยกเลิก</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<!-- /.content-wrapper -->
+
+
+
+
+@section Scripts {
+    <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+<script>
+
+$(document).ready(function () {
+/*---------------------------------------------form----------------------------*/
+$("#addSubmit").click(function() {  //validate form ของการเพิ่มข้อ
+    $.validator.setDefaults({
+        submitHandler: function () {
+            var myData = $("#addPosition").serializeArray();
+
+            console.log(myData);
+            $.ajax({
+                url: '/SettingManage/recivePosition', // url where to submit the request
+                type : "POST", // type of action POST || GET
+                dataType : 'JSON', // data type
+                //contentType: "application/json",
+                data : myData, // post data || get data
+                success : function(result) {
+                    console.log(result);
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'สำเร็จ',
+                    text: 'บันทึกข้อมูลสำเร็จ',
+                    confirmButtonText: 'ยืนยัน'
+                    })
+
+                    document.getElementById("addPosition").reset();
+                },
+                error: function(xhr, resp, text) {
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'ผิดพลาด',
+                    text: 'บันทึกข้อมูลไม่สำเร็จ',
+                    confirmButtonText: 'ยืนยัน'
+                    })
+                    console.log(xhr, resp, text);
+                }
+            })
+
+        }
+    });
+    $('#addPosition').validate({
+        rules: {
+            PosName: {
+                required: true
+            },
+            CompanyName: {
+                required: true
+            },
+        },
+        messages: {
+            PosName: {
+                required: "กรุณาระบุชื่อแผนก"
+            },
+            CompanyName: {
+                required: "กรุณาระบุชื่อบริษัท"
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+    $("#addCancel").click(function() { //clear validate
+        var validImportForm = $( "#addPosition" ).validate();
+        validImportForm.resetForm();
+    });
+});  
+/*---------------------------------------form validate ----------------------------------------------*/
+
+/*---------------------------------------------form----------------------------*/
+$("#editSubmit").click(function() {  //validate form ของการแก้ไขข้อมูลบริษัท
+    $.validator.setDefaults({
+        submitHandler: function () {
+            var myData = $("#editPosition").serializeArray();
+
+            console.log(myData);
+            $.ajax({
+                url: '/SettingManage/recivePosition', // url where to submit the request
+                type : "POST", // type of action POST || GET
+                dataType : 'JSON', // data type
+                //contentType: "application/json",
+                data : myData, // post data || get data
+                success : function(result) {
+                    console.log(result);
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'สำเร็จ',
+                    text: 'บันทึกข้อมูลสำเร็จ',
+                    confirmButtonText: 'ยืนยัน'
+                    })
+
+                    document.getElementById("editPosition").reset();
+                },
+                error: function(xhr, resp, text) {
+                    Swal.fire({
+                    icon: 'error',
+                    title: 'ผิดพลาด',
+                    text: 'บันทึกข้อมูลไม่สำเร็จ',
+                    confirmButtonText: 'ยืนยัน'
+                    })
+                    console.log(xhr, resp, text);
+                }
+            })
+
+        }
+    });
+    $('#editPosition').validate({
+        rules: {
+            PosName: {
+                required: true
+            },
+            CompanyName: {
+                required: true
+            }
+        },
+        messages: {
+            PosName: {
+                required: "กรุณาระบุชื่อแผนก"
+            },
+            CompanyName: {
+                required: "กรุณาระบุชื่อบริษัท"
+            }
+        },
+        errorElement: 'span',
+        errorPlacement: function (error, element) {
+            error.addClass('invalid-feedback');
+            element.closest('.form-group').append(error);
+        },
+        highlight: function (element, errorClass, validClass) {
+            $(element).addClass('is-invalid');
+        },
+        unhighlight: function (element, errorClass, validClass) {
+            $(element).removeClass('is-invalid');
+        }
+    });
+    $("#editCancel").click(function() { //clear validate
+        var validImportForm = $( "#editPosition" ).validate();
+        validImportForm.resetForm();
+    });
+
+});  
+/*---------------------------------------form validate ----------------------------------------------*/
+
+});
+
+function deleteRow () {
+        Swal.fire({
+        title: 'ต้องการลบข้อมูล ?',
+        text: "กดยืนยันเพื่อลบข้อมูล",
+        icon: 'error',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        cancelButtonText: 'ยกเลิก',
+        confirmButtonText: 'ยืนยัน'
+        }).then((result) => {
+        if (result.value) {
+            Swal.fire({
+            icon: 'success',
+            title: 'สำเร็จ',
+            text: 'ลบข้อมูลแล้ว',
+            confirmButtonText: 'ยืนยัน'
+            })
+
+        }
+        })         
+    };
+
+    function loadTable() {
+    $('.spinnertable').show();
+    $('.createDataTable').empty(); 
+    var htmlStr = '<table id="createDataTable" class="table table-striped table-bordered table-hover" style="width:100%">'
+        +'<thead>'
+            +'<tr>'
+                +'<th>No.</th>'
+                +'<th>รหัสพนักงาน</th>'
+                +'<th>ชื่อแผนก</th>'
+                +'<th>สาขา/โกดัง</th>'
+                +'<th>ชื่อบริษัท</th>'
+                +'<th>รายละเอียด</th>'
+                +'<th>สถานะ</th>'      
+                +'<th></th>'
+            +'</tr>'
+        +'</thead>'
+    +'<tbody>';
+    for( var i = 0; i < 30; i++ ) {
+        htmlStr += '<tr>'
+            +'<td>'+parseInt(i+1)+'</td>'
+            +'<td>'+"xxxxx"+'</td>'
+            +'<td>'+'ปปปป'+'</td>'
+            +'<td>'+"xxxxx"+'</td>'
+            +'<td>'+"xxxxx"+'</td>'
+            +'<td>'+"xxxxx"+'</td>'
+            +'<td>'+"xxxxx"+'</td>'
+            +'<td class="d-flex justify-content-lg-center">'
+                +'<a href="javascript:void(0)"><i class="fas fa-edit" data-toggle="modal" data-target="#editPalletModal" ></i></a> '
+                +'<pre></pre>'
+                +'<a href="javascript:void(0)"><i class="fas fa-trash" style="color:red" onclick="deleteRow()"></i></a>'
+                +'</td>'
+        +'</tr>';
+    }
+    htmlStr += '</tbody>'
+    +'</table>';  
+
+    $('.createDataTable').html(htmlStr); 
+    $("#createDataTable").DataTable();
+
+    $('.spinnertable').remove();
+    };
+    $(function () {
+        loadTable();
+    });
+                               
+                          
+</script>
+}

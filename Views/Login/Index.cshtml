@@ -1,0 +1,106 @@
+﻿@model LoginViewModel;
+@{
+    Layout = "";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>LOGIN | PMS</title>
+  
+  <!-- Theme style -->
+  <link rel="stylesheet" href="~/template/adminlte/dist/css/adminlte.min.css">
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="~/template/adminlte/plugins/fontawesome-free/css/all.min.css">
+  <!-- icheck bootstrap -->
+  <link rel="stylesheet" href="~/template/adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <!--  sweetalert2 -->
+  <link rel="stylesheet" href="~/lib/sweetalert2/dist/sweetalert2.min.css">
+  <!-- App style -->
+  <link rel="stylesheet" type="text/css" href="~/css/login.css">
+</head>
+<body>
+  <div class="row ni row clear md">
+        <div class="col-7 ni col clear md">
+            <div class="hold-transition login-page ni bg1">
+              <div class="login-logo ni h-text">
+                <b>PALLET MANAGEMENT SYSTEM</b>
+              </div>
+              <div class="img"></div>
+            </div>
+        </div>
+        <div class="col-5 ni col clear md">
+            <div class="hold-transition login-page ni login">
+                <div class="login-box">
+                    <!-- /.login-logo -->
+                    <div class="card ni card">
+                        <div class="card-body">
+                            <div class="login-logo">
+                                <b>Login</b>
+                            </div>
+                            <p class="login-box-msg">Sign in to start app PMS</p>
+
+                            <form asp-action="Index" method="POST">
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="fas fa-user"></i>
+                                    </span>
+                                  </div>
+                                  <input asp-for="@Model.username" type="text" class="form-control" placeholder="Username" required>
+                                  <span asp-validation-for="@Model.username" class="ni error"></span>
+                                </div>
+                                <div class="input-group mb-3">
+                                  <div class="input-group-prepend">
+                                    <span class="input-group-text">
+                                      <i class="fas fa-key"></i>
+                                    </span>
+                                  </div>
+                                  <input asp-for="@Model.password" type="password" class="form-control" placeholder="Password" required>
+                                  <span asp-validation-for="@Model.password" class="ni error"></span>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <div class="icheck-primary mb-3">
+                                            <input asp-for="ischecked" type="checkbox" id="remember">
+                                            <label for="remember">
+                                              Remember Me
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                                <div class="row">
+                                    <div class="col-12">
+                                        <button type="submit" class="btn btn-success btn-block">Login</button>
+                                    </div>
+                                    <!-- /.col -->
+                                </div>
+                            </form>
+                        </div>
+                        <!-- /.login-card-body -->
+                    </div>
+                </div>
+                <!-- /.login-box -->
+            </div>
+        </div>
+    </div>
+
+    <!--  sweetalert2 -->
+    <script src="~/lib/sweetalert2/dist/sweetalert2.min.js"></script>
+    @if (ViewBag.Message != null){
+      <script type="text/javascript">
+        window.onload = function () {
+          Swal.fire(
+              '@ViewBag.Message',
+              '',
+              'error'
+          );
+        };
+      </script>
+    }
+</body>
+</html>

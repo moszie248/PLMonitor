@@ -1,0 +1,617 @@
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+    <div class="content-header ni content-header-bg pad-0">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item"><a asp-controller="Home" asp-action="Index">หน้าหลัก</a></li>
+                        <li class="breadcrumb-item active">การจัดการ RFID</li>
+                    </ol>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+    <!-- Main content -->
+    <div class="content">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <section class="content">
+                                 <div class="container-fluid">
+
+                                    <form class="text-center mb-3">
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">เลขที่ใบสั่งซื้อ</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="text" class="form-control" id="PurchaseOrder" name="PurchaseOrder" />
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">เสียหาย</label>
+                                                    <div class="col-md col-lg-8 text-left">
+                                                        <select class="form-control select2bs4" id="Damage" name="Damage">
+                                                        <option value="0" disabled selected>ทั้งหมด</option>
+                                                        <option value="1">5 %</option>
+                                                        <option value="2">10 %</option>
+                                                        <option value="3">15 %</option>
+                                                        <option value="4">20 %</option>
+                                                        <option value="3">25 %</option>
+                                                    </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-3">
+                                                <div class="row">
+                                                    <div class="col">
+                                                        <button type="button" class="btn btn-block btn-success">
+                                                            <i class="fas fa-search fa-xs mr-2"></i>ค้นหา
+                                                        </button>
+                                                    </div>
+                                                    <div class="col">
+                                                        <button type="button" class="btn btn-block btn-primary" data-toggle="modal" data-target="#addRFIDModal">
+                                                            <i class="fas fa-plus fa-xs mr-2"></i>
+                                                            สร้าง
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">รหัส</label>
+                                                    <div class="col-md col-lg-8 text-left">
+                                                        <select class="form-control select2bs4" id="inputGroupSelect01">
+                                                            <option value="0" selected>ทั้งหมด</option>
+                                                            <option value="1">1</option>
+                                                            <option value="2">2</option>
+                                                            <option value="3">3</option>
+                                                            <option value="4">4</option>
+                                                            <option value="5">5</option>
+                                                            <option value="6">6</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-12 col-lg-4"></div>
+                                            <div class="col-12 col-lg-3"></div>
+
+                                        </div>
+
+                                        <div class="form-group row justify-content-center">
+                                            <div class="col-12 col-lg-4">
+                                                <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">วันที่ซื้อ</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="buyDate" name="buyDate">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-4">
+                                            <div class="form-group row">
+                                                    <label for="" class="col-md-3 col-lg-4 col-form-label">ถึง</label>
+                                                    <div class="col-md col-lg-8">
+                                                        <input type="date" class="form-control" id="endBuyDate" name="endBuyDate">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-lg-3"></div>
+                                        </div>
+
+                                    </form>
+
+                                    <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                        <div class="spinnertable text-center">
+                                            <div class="spinner-grow text-primary" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="createDataTableDiv"></div>
+
+                                 </div>
+                            </section>
+                       </div>
+                    </div>
+                </div>
+            </div>
+        </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+
+    <!--addd RFID Modal ModaL-->
+    <form id="addRFIDForm" method="POST" class="text-center">
+        <div class="modal fade bd-example-modal-xl" id="addRFIDModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">เพิ่มรายการ RFID</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    เลขที่ใบสั่งซื้อ
+                                </div>
+                                <div class="col-sm-8 text-left">
+                                    <select class="form-control select2bs4" id="addInvoice" name="Invoice">
+                                        <option value="" disabled selected>โปรดเลือก</option>
+                                        <option value="1">test</option>
+                                        <option value="2">test</option>
+                                        <option value="3">test</option>
+                                        <option value="4">test</option>
+                                        <option value="3">test</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    สภาพความเสียหาย
+                                </div>
+                                
+                                <div class="col-sm-8 text-left">
+                                <select class="form-control select2bs4" id="addDamage" name="Damage">
+                                        <option value="" disabled selected>โปรดเลือก</option>
+                                        <option value="1">5 %</option>
+                                        <option value="2">10 %</option>
+                                        <option value="3">15 %</option>
+                                        <option value="4">20 %</option>
+                                        <option value="3">25 %</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    วันที่ซื้อ <label class="text-danger">*</label>
+                                </div>
+                                <div class="col-sm-8">
+                                <input type="date" class="form-control" id="addBuyDate" name="BuyDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    วันที่หมดอายุ <label class="text-danger">*</label>
+                                </div>
+                                
+                                <div class="col-sm-8">
+                                <input type="date" class="form-control" id="addExpDate" name="ExpDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    รหัสที่อ่านได้
+                                </div>
+                                <div class="col-sm-8">
+                                    <input type="text" class="form-control" id="addRFIDID" name="RFIDID">   
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-md-5 text-left">
+                            <button type="submit" class="btn btn-primary" id="addRFIDSubmit">ลงทะเบียน</button>
+                            <button type="reset" class="btn btn-danger" id="cancelRFIDSubmit">ยกเลิก</button> 
+                        </div>
+                    </div>
+                    <div class="row"><br></div>    
+                    <div class="row">
+                        <div class="col-md-2"></div>
+                        <div class="col-md-8">
+                            <div class="tab-pane fade show active" id="pills-export" role="tabpanel" aria-labelledby="pills-export-tab">
+                                <div class="spinnerAdd text-center">
+                                    <div class="spinner-grow text-primary" role="status">
+                                        <span class="sr-only">Loading...</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="addTableRFIDDiv"></div>
+                        </div>
+                        <div class="col-md-2"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+
+    <!--EDIT Modal ModaL-->
+    <form id="editRFIDForm" class="text-center">
+        <div class="modal fade bd-example-modal-xl" id="editRFIDModal" tabindex="-1" role="dialog" aria-labelledby="editRFIDModal" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editRFIDModal">แก้ไขรายการ RFID</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    เลขที่ใบสั่งซื้อ
+                                </div>
+                                <div class="col-sm-8 text-left">
+                                <select class="form-control select2bs4" id="editInvoice" name="Invoice">
+                                        <option value="" disabled selected>โปรดเลือก</option>
+                                        <option value="1">test</option>
+                                        <option value="2">test</option>
+                                        <option value="3">test</option>
+                                        <option value="4">test</option>
+                                        <option value="3">test</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    รหัส
+                                </div>
+                                <div class="col-sm-8">
+                                <input type="text" class="form-control" id="editRFIDID" name="RFIDID">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    วันที่ซื้อ <label class="text-danger">*</label>
+                                </div>
+                                
+                                <div class="col-sm-8">
+                                    <input type="date" class="form-control" id="editBuyDate" name="BuyDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5">
+                            <div class="form-group row">
+                                <div class="col-sm-4">
+                                    วันที่เสียหาย <label class="text-danger">*</label>
+                                </div>
+                                
+                                <div class="col-sm-8">
+                                    <input type="date" class="form-control" id="editExpDate" name="ExpDate">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <div class="form-group row">
+                                <div class="col-sm-2">
+                                    รายละเอียด
+                                </div>
+                                <div class="col-sm-10">
+                                <textarea class="form-control" id="editDescription" name="Desc" rows="3" placeholder="รายละเอียดเพิ่มเติม"></textarea>
+                                </div>
+                            </div> 
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4"></div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-primary" id="editRFIDSubmit">บันทึก</button>
+                        </div>
+                        <div class="col-md-2">
+                            <button type="button" class="btn btn-danger"  id="cancelRFIDEdit">ยกเลิก</button> 
+                        </div>
+                        <div class="col-md-4"></div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+</div>
+<!-- /.content-wrapper -->
+
+
+@section Scripts {
+    <script src="~/template/adminlte/plugins/jquery-validation/jquery.validate.js"></script>
+    <script src="~/template/adminlte/plugins/jquery-validation/additional-methods.min.js"></script>
+<script>
+    
+    document.nz.openMenu("#Management").activeMenu("#ManageRFID");
+
+    $(document).ready(function () {
+        loadTable();
+        loadTableRFID();
+
+        document.__proto__.deleteRow = function () {
+            Swal.fire({
+            title: 'ต้องการลบข้อมูล ?',
+            text: "กดยืนยันเพื่อลบข้อมูล",
+            icon: 'error',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            cancelButtonText: 'ยกเลิก',
+            confirmButtonText: 'ยืนยัน'
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                    icon: 'success',
+                    title: 'สำเร็จ',
+                    text: 'ลบข้อมูลแล้ว',
+                    confirmButtonText: 'ยืนยัน'
+                    })
+
+                }
+            })         
+        };
+
+        /*---------------------------------------------form----------------------------*/
+        $("#addRFIDSubmit").click(function() { //validate
+            $.validator.setDefaults({
+                submitHandler: function () {
+                    var addData = $("#addRFIDForm").serializeArray();
+                    $.ajax({
+                        url: '/Management/reciveAddRFID', // url where to submit the request
+                        type : "POST", // type of action POST || GET
+                        dataType : 'JSON', // data type
+                        //contentType: "application/json",
+                        data : addData, // post data || get data
+                        success : function(result) {
+                            console.log(result);
+                            Swal.fire({
+                            icon: 'success',
+                            title: 'สำเร็จ',
+                            text: 'บันทึกข้อมูลสำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+
+                            document.getElementById("addRFIDForm").reset();
+                        },
+                        error: function(xhr, resp, text) {
+                            Swal.fire({
+                            icon: 'error',
+                            title: 'ผิดพลาด',
+                            text: 'บันทึกข้อมูลไม่สำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+                            console.log(xhr, resp, text);
+                        }
+                    })
+                }
+            });
+            $('#addRFIDForm').validate({
+                rules: {
+                    BuyDate: {
+                        required: true
+                    },
+                    ExpDate: {
+                        required: true
+                    }
+                },
+                messages: {
+                    BuyDate: {
+                        required: "กรุณาระบุวันที่ซื้อ"
+                    },
+                    ExpDate: {
+                        required: "กรุณาระบุวันที่หมดอายุ"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+        $("#cancelRFIDSubmit").click(function() { //clear validate
+            var validImportForm = $( "#addRFIDForm" ).validate();
+            validImportForm.resetForm();
+        });
+
+        /*---------------------------------------------form edit----------------------------*/
+        $("#editRFIDSubmit").click(function() { //validate
+            $.validator.setDefaults({
+                submitHandler: function () {
+                    var addData = $("#editRFIDForm").serializeArray();
+                    $.ajax({
+                        url: '/Management/reciveEditRFID', // url where to submit the request
+                        type : "POST", // type of action POST || GET
+                        dataType : 'JSON', // data type
+                        //contentType: "application/json",
+                        data : addData, // post data || get data
+                        success : function(result) {
+                            console.log(result);
+                            Swal.fire({
+                            icon: 'success',
+                            title: 'สำเร็จ',
+                            text: 'บันทึกข้อมูลสำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+
+                            document.getElementById("editRFIDForm").reset();
+                        },
+                        error: function(xhr, resp, text) {
+                            Swal.fire({
+                            icon: 'error',
+                            title: 'ผิดพลาด',
+                            text: 'บันทึกข้อมูลไม่สำเร็จ',
+                            confirmButtonText: 'ยืนยัน'
+                            })
+                            console.log(xhr, resp, text);
+                        }
+                    })
+                }
+            });
+            $('#editRFIDForm').validate({
+                rules: {
+                    BuyDate: {
+                        required: true
+                    },
+                    ExpDate: {
+                        required: true
+                    }
+                },
+                messages: {
+                    BuyDate: {
+                        required: "กรุณาระบุวันที่ซื้อ"
+                    },
+                    ExpDate: {
+                        required: "กรุณาระบุวันที่หมดอายุ"
+                    }
+                },
+                errorElement: 'span',
+                errorPlacement: function (error, element) {
+                    error.addClass('invalid-feedback');
+                    element.closest('.form-group').append(error);
+                },
+                highlight: function (element, errorClass, validClass) {
+                    $(element).addClass('is-invalid');
+                },
+                unhighlight: function (element, errorClass, validClass) {
+                    $(element).removeClass('is-invalid');
+                }
+            });
+        });
+        $("#cancelRFIDEdit").click(function() { //clear validate
+            var validImportForm = $( "#editRFIDForm" ).validate();
+            validImportForm.resetForm();
+        });
+
+        function loadTableRFID() {
+            $('.spinnerAdd').show();
+            $('.addTableRFIDDiv').empty(); 
+            var htmlStr = '<table id="addTableRFID" class="table table-striped table-bordered table-hover" style="width:100%">'
+                +'<thead>'
+                    +'<tr class="text-center">'
+                        +'<th>No.</th>'
+                        +'<th>รหัส</th>'
+                    +'</tr>'
+                +'</thead>'
+            +'<tbody>';
+            for( var i = 0; i < 30; i++ ) {
+                htmlStr += '<tr>'
+                    +'<td>'+parseInt(i+1)+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                +'</tr>';
+            }
+            htmlStr += '</tbody>'
+            +'</table>';  
+
+            $('.addTableRFIDDiv').html(`<div class="table-responsive">${htmlStr}</div>`);
+            $("#addTableRFID").DataTable({
+                dom: `<'row'<'col-sm-12'l>>
+                    <'row'<'col-sm-12'tr>>
+                    <'row'<'col-sm-6'i><'col-sm-6'p>>`,
+                drawCallback: function (settings) {
+                    $('.spinnerAdd').hide();
+                }
+            });
+        };
+
+        function loadTable() {
+            $('.spinnertable').show();
+            $('.createDataTableDiv').empty(); 
+            var htmlStr = '<table id="createDataTable" class="display nowrap table table-bordered" style="width:100%">'
+                +'<thead>'
+                    +'<tr class="text-center">'
+                        +'<th>No.</th>'
+                        +'<th>รหัส</th>'
+                        +'<th>เลขที่ใบสั่งซื้อ</th>'
+                        +'<th>ค่าความเสียหาย</th>'
+                        +'<th>วันที่ซื้อ</th>'
+                        +'<th>วันหมดอายุ</th>'
+                        +'<th>สถานะ</th>'
+                        +'<th>รายละเอียด</th>'
+                        +'<th></th>'
+                    +'</tr>'
+                +'</thead>'
+            +'<tbody>';
+            for( var i = 0; i < 30; i++ ) {
+                htmlStr += '<tr>'
+                    +'<td>'+parseInt(i+1)+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+'<a asp-controller="Management" asp-action="DetailRFID">link</a>'+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td>'+"xxxxx"+'</td>'
+                    +'<td class="d-flex justify-content-lg-center">'
+                        +'<a href="#"><i class="fas fa-edit mr-3" data-toggle="modal" data-target="#editRFIDModal" ></i></a> '
+                        +'<a href="#"><i class="fas fa-trash mr-3" onclick="deleteRow()" style="color:red"></i></a>'
+                    +'</td>'
+                +'</tr>';
+            }
+            htmlStr += '</tbody>'
+            +'</table>';  
+
+
+            $('.createDataTableDiv').html(`<div class="table-responsive">${htmlStr}</div>`);
+            $("#createDataTable").DataTable({
+                dom: `<'row'<'col-sm-12'l>>
+                    <'row'<'col-sm-12'tr>>
+                    <'row'<'col-sm-6'i><'col-sm-6'p>>`,
+                drawCallback: function (settings) {
+                    $('.spinnertable').hide();
+                }
+            });
+
+        };
+
+    });
+                                                
+</script>
+}
